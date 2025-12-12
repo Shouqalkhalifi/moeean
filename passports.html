@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجوازات | منصة معين</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2e7d32;
+            text-align: center;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #1b5e20;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .service-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid #2e7d32;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .service-icon {
+            font-size: 40px;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        .service-title {
+            color: #2e7d32;
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+        .service-description {
+            color: #555;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+        .service-button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .service-button:hover {
+            background-color: #1b5e20;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+        .status-available {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .status-soon {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <a href="dashboard.html" class="back-button">
+            <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+        </a>
+        <h1><i class="fas fa-passport"></i> خدمات الجوازات</h1>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3 class="service-title">تجديد الجواز</h3>
+                <div class="service-description">
+                    تجديد جواز السفر المنتهي أو المنتهي قريباً
+                </div>
+                <span class="status-badge status-available">متاح</span>
+                <div style="margin-top: 15px;">
+                    <button class="service-button">بدء الخدمة</button>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3 class="service-title">استخراج بدل فاقد/تالف</h3>
+                <div class="service-description">
+                    طلب بدل فاقد أو تالف لجواز السفر
+                </div>
+                <span class="status-badge status-available">متاح</span>
+                <div style="margin-top: 15px;">
+                    <button class="service-button">بدء الخدمة</button>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="service-title">الاستعلام عن طلب</h3>
+                <div class="service-description">
+                    تتبع حالة طلب سابق للجواز
+                </div>
+                <span class="status-badge status-available">متاح</span>
+                <div style="margin-top: 15px;">
+                    <button class="service-button">استعلام</button>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-plane-departure"></i>
+                </div>
+                <h3 class="service-title">تأشيرة خروج وعودة</h3>
+                <div class="service-description">
+                    طلب تأشيرة خروج وعودة للمقيمين
+                </div>
+                <span class="status-badge status-available">متاح</span>
+                <div style="margin-top: 15px;">
+                    <button class="service-button">بدء الخدمة</button>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3 class="service-title">تأشيرة زيارة</h3>
+                <div class="service-description">
+                    طلب تأشيرة زيارة لأقارب المقيمين
+                </div>
+                <span class="status-badge status-available">متاح</span>
+                <div style="margin-top: 15px;">
+                    <button class="service-button">بدء الخدمة</button>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3 class="service-title">الاستعلام عن التأشيرة</h3>
+                <div class="service-description">
+                    الاستعلام عن حالة طلب التأشيرة وطباعة التأشيرة
+                </div>
+                <span class="status-badge status-available">متاح</span>
+                <div style="margin-top: 15px;">
+                    <button class="service-button">استعلام</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المزادات الإلكترونية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #c2185b 0%, #d81b60 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(194, 24, 91, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffeb3b, #fff59d);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .auctions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .auction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .auction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #c2185b;
+        }
+        
+        .auction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #c2185b, #d81b60);
+        }
+        
+        .auction-image {
+            height: 200px;
+            background: linear-gradient(45deg, #c2185b, #d81b60);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auction-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(0,0,0,0.2));
+        }
+        
+        .auction-content {
+            padding: 25px;
+        }
+        
+        .auction-title {
+            color: #c2185b;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .auction-details {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .auction-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        .current-bid {
+            text-align: center;
+        }
+        
+        .bid-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .bid-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #c2185b;
+        }
+        
+        .time-left {
+            text-align: center;
+        }
+        
+        .time-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .time-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2196f3;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #c2185b, #d81b60);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(194, 24, 91, 0.3);
+            background: linear-gradient(135deg, #ad1457, #c2185b);
+        }
+        
+        .bids-table {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .bids-table h3 {
+            color: #c2185b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #f5f5f5;
+            padding: 15px;
+            text-align: right;
+            color: #c2185b;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+        }
+        
+        .bidder-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .voice-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #c2185b, #d81b60);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(194, 24, 91, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .voice-assistant-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(194, 24, 91, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .auctions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .auction-info {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-gavel"></i> المزادات الإلكترونية الحكومية</h1>
+            <p>المزايدة على اللوحات المميزة، المركبات، والعقارات الحكومية بطريقة إلكترونية آمنة</p>
+        </div>
+        
+        <div class="auctions-grid">
+            <div class="auction-card">
+                <div class="auction-image">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="auction-content">
+                    <h3 class="auction-title"><i class="fas fa-hashtag"></i> لوحة مركبة مميزة: ٧٧٧</h3>
+                    <p class="auction-details">لوحة مركبة برقم متكرر، متاحة للمزايدة لجميع المواطنين والمقيمين</p>
+                    
+                    <div class="auction-info">
+                        <div class="current-bid">
+                            <div class="bid-label">السعر الحالي</div>
+                            <div class="bid-amount">25,000 ر.س</div>
+                        </div>
+                        <div class="time-left">
+                            <div class="time-label">متبقي</div>
+                            <div class="time-value">2 يوم 5 ساعة</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn"><i class="fas fa-hand-point-up"></i> تقديم مزايدة</button>
+                </div>
+            </div>
+            
+            <div class="auction-card">
+                <div class="auction-image">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="auction-content">
+                    <h3 class="auction-title"><i class="fas fa-building"></i> عقار حكومي - الرياض</h3>
+                    <p class="auction-details">عقار سكني في حي العليا، مساحة 500م²، مزاد علني إلكتروني</p>
+                    
+                    <div class="auction-info">
+                        <div class="current-bid">
+                            <div class="bid-label">السعر الحالي</div>
+                            <div class="bid-amount">2,500,000 ر.س</div>
+                        </div>
+                        <div class="time-left">
+                            <div class="time-label">متبقي</div>
+                            <div class="time-value">7 يوم 12 ساعة</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn"><i class="fas fa-hand-point-up"></i> تقديم مزايدة</button>
+                </div>
+            </div>
+            
+            <div class="auction-card">
+                <div class="auction-image">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="auction-content">
+                    <h3 class="auction-title"><i class="fas fa-shuttle-van"></i> مركبة نقل حكومية</h3>
+                    <p class="auction-details">شاحنة نقل 2022، موديل حديث، صالحة للعمل، مزاد للشركات والأفراد</p>
+                    
+                    <div class="auction-info">
+                        <div class="current-bid">
+                            <div class="bid-label">السعر الحالي</div>
+                            <div class="bid-amount">85,000 ر.س</div>
+                        </div>
+                        <div class="time-left">
+                            <div class="time-label">متبقي</div>
+                            <div class="time-value">3 يوم 8 ساعة</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn"><i class="fas fa-hand-point-up"></i> تقديم مزايدة</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bids-table">
+            <h3><i class="fas fa-history"></i> آخر المزايدات على اللوحة ٧٧٧</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>المزايد</th>
+                        <th>المبلغ</th>
+                        <th>التاريخ</th>
+                        <th>الحالة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="bidder-name">أحمد محمد</td>
+                        <td>25,000 ر.س</td>
+                        <td>15/03/2024 14:30</td>
+                        <td><span style="color: #4caf50;">أعلى مزايدة</span></td>
+                    </tr>
+                    <tr>
+                        <td class="bidder-name">سارة خالد</td>
+                        <td>24,500 ر.س</td>
+                        <td>15/03/2024 13:45</td>
+                        <td><span style="color: #ff9800;">مزايدة سابقة</span></td>
+                    </tr>
+                    <tr>
+                        <td class="bidder-name">عبدالله سالم</td>
+                        <td>23,800 ر.س</td>
+                        <td>14/03/2024 20:15</td>
+                        <td><span style="color: #ff9800;">مزايدة سابقة</span></td>
+                    </tr>
+                    <tr>
+                        <td class="bidder-name">فاطمة ناصر</td>
+                        <td>22,000 ر.س</td>
+                        <td>14/03/2024 11:30</td>
+                        <td><span style="color: #ff9800;">مزايدة سابقة</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="vehicle_plates.html" class="btn" style="background: linear-gradient(135deg, #0277bd, #0288d1); width: auto; padding: 12px 40px;">
+                <i class="fas fa-arrow-right"></i> لوحات المركبات
+            </a>
+            <a href="dashboard.html" class="btn" style="background: linear-gradient(135deg, #666, #888); width: auto; padding: 12px 40px; margin-right: 15px;">
+                <i class="fas fa-home"></i> الرئيسية
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 نظام المزادات الإلكترونية - وزارة الداخلية. جميع الحقوق محفوظة.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">
+                <i class="fas fa-phone"></i> هاتف الدعم: 19997 | 
+                <i class="fas fa-envelope"></i> البريد: auctions@moi.gov.sa
+            </p>
+        </div>
+    </div>
+    
+    <!-- زر المساعد الصوتي -->
+    <a href="javascript:void(0)" onclick="openMaeenModal()" class="voice-assistant-btn">
+        <i class="fas fa-microphone"></i>
+    </a>
+    
+    <!-- أضف كود مودال معين الصوتي هنا -->
+    <!-- ... كود المودال ... -->
+    
+    <script>
+        // جعل الدوال متاحة عالمياً
+        window.openMaeenModal = function() {
+            if (typeof openMaeenModal === 'function') {
+                openMaeenModal();
+            } else {
+                alert('يتم تحميل المساعد الصوتي...');
+            }
+        };
+        
+        // تفاعل أزرار المزايدة
+        document.querySelectorAll('.btn').forEach(button => {
+            if (button.textContent.includes('تقديم مزايدة')) {
+                button.addEventListener('click', function() {
+                    const auctionTitle = this.closest('.auction-card').querySelector('.auction-title').textContent;
+                    const currentBid = this.closest('.auction-card').querySelector('.bid-amount').textContent;
+                    
+                    const newBid = prompt(`تقديم مزايدة على ${auctionTitle}\nالمبلغ الحالي: ${currentBid}\nأدخل مبلغ المزايدة الجديد (بالريال السعودي):`);
+                    
+                    if (newBid && !isNaN(newBid)) {
+                        const bidAmount = parseInt(newBid);
+                        if (bidAmount > parseInt(currentBid.replace(/[^0-9]/g, ''))) {
+                            alert(`تم تقديم مزايدتك بمبلغ ${bidAmount.toLocaleString()} ر.س بنجاح!`);
+                            // هنا يمكن إضافة كود إرسال المزايدة للخادم
+                        } else {
+                            alert('يجب أن يكون المبلغ أكبر من المبلغ الحالي!');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

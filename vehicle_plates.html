@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحات المركبات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0277bd 0%, #0288d1 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(2, 119, 189, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffeb3b, #fff59d);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .plate-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .plate-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #0277bd;
+        }
+        
+        .plate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #0277bd, #0288d1);
+        }
+        
+        .plate-preview {
+            background: #f5f5f5;
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #ddd;
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #0277bd;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .plate-card h3 {
+            color: #0277bd;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .plate-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .plate-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e91e63;
+            margin: 15px 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0277bd, #0288d1);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(2, 119, 189, 0.3);
+            background: linear-gradient(135deg, #01579b, #0277bd);
+        }
+        
+        .auction-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid #ff9800;
+        }
+        
+        .auction-section h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .auction-item {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-right: 4px solid #ff9800;
+        }
+        
+        .auction-plate {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0277bd;
+        }
+        
+        .auction-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e91e63;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .voice-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #0277bd, #0288d1);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(2, 119, 189, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .voice-assistant-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(2, 119, 189, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .plate-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .auction-item {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-car-side"></i> نظام لوحات المركبات</h1>
+            <p>اختيار وشراء لوحات المركبات المميزة، المزادات الإلكترونية، وخدمات الاستبدال والتجديد</p>
+        </div>
+        
+        <div class="plate-types">
+            <div class="plate-card">
+                <h3><i class="fas fa-car"></i> اللوحات العادية</h3>
+                <div class="plate-preview">
+                    أ ب ج ١٢٣٤
+                </div>
+                <p>اللوحات القياسية للمركبات الخاصة والعامة، متوفرة بعدة ألوان وتصاميم</p>
+                <div class="plate-price">100 ر.س</div>
+                <button class="btn"><i class="fas fa-shopping-cart"></i> طلب لوحة</button>
+            </div>
+            
+            <div class="plate-card">
+                <h3><i class="fas fa-crown"></i> اللوحات المميزة</h3>
+                <div class="plate-preview" style="background: linear-gradient(45deg, #ffeb3b, #ff9800); color: #333;">
+                    م م ٧٧٧
+                </div>
+                <p>لوحات ذات أرقام مميزة ومتكررة، متاحة للمزايدة والشراء المباشر</p>
+                <div class="plate-price">5,000+ ر.س</div>
+                <button class="btn"><i class="fas fa-gavel"></i> المزايدة</button>
+            </div>
+            
+            <div class="plate-card">
+                <h3><i class="fas fa-shield-alt"></i> اللوحات الرسمية</h3>
+                <div class="plate-preview" style="background: #333; color: white; border-color: #666;">
+                    ح ك ١٠١
+                </div>
+                <p>لوحات المركبات الحكومية والرسمية، ذات ألوان وتصاميم خاصة</p>
+                <div class="plate-price">200 ر.س</div>
+                <button class="btn"><i class="fas fa-file-alt"></i> طلب رسمي</button>
+            </div>
+            
+            <div class="plate-card">
+                <h3><i class="fas fa-truck"></i> لوحات النقل</h3>
+                <div class="plate-preview" style="background: #f5f5f5; color: #d32f2f;">
+                    ن ق ٥٦٧٨
+                </div>
+                <p>لوحات مركبات النقل التجاري والشحن، بألوان مخصصة للمركبات الثقيلة</p>
+                <div class="plate-price">150 ر.س</div>
+                <button class="btn"><i class="fas fa-truck-loading"></i> طلب تجاري</button>
+            </div>
+        </div>
+        
+        <div class="auction-section">
+            <h3><i class="fas fa-gavel"></i> مزادات اللوحات المميزة الحالية</h3>
+            
+            <div class="auction-item">
+                <div>
+                    <div class="auction-plate">١١١١ أ ب ج</div>
+                    <div style="color: #666; font-size: 0.9rem;">ينتهي بعد 2 يوم 5 ساعات</div>
+                </div>
+                <div class="auction-price">25,000 ر.س</div>
+            </div>
+            
+            <div class="auction-item">
+                <div>
+                    <div class="auction-plate">٧٧٧ س ص ع</div>
+                    <div style="color: #666; font-size: 0.9rem;">ينتهي بعد 5 أيام 3 ساعات</div>
+                </div>
+                <div class="auction-price">18,500 ر.س</div>
+            </div>
+            
+            <div class="auction-item">
+                <div>
+                    <div class="auction-plate">٨٨٨ ل م ن</div>
+                    <div style="color: #666; font-size: 0.9rem;">ينتهي بعد 7 أيام 12 ساعة</div>
+                </div>
+                <div class="auction-price">32,000 ر.س</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="auctions.html" class="btn" style="background: linear-gradient(135deg, #ff9800, #ff5722);">
+                <i class="fas fa-gavel"></i> عرض جميع المزادات
+            </a>
+            <a href="vehicle_services.html" class="btn" style="background: linear-gradient(135deg, #7b1fa2, #9c27b0); margin-right: 15px;">
+                <i class="fas fa-arrow-right"></i> خدمات المركبات
+            </a>
+            <a href="dashboard.html" class="btn" style="background: linear-gradient(135deg, #666, #888); margin-right: 15px;">
+                <i class="fas fa-home"></i> الرئيسية
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 إدارة لوحات المركبات - وزارة الداخلية. جميع الحقوق محفوظة.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">
+                <i class="fas fa-phone"></i> هاتف الدعم: 19995 | 
+                <i class="fas fa-envelope"></i> البريد: plates@moi.gov.sa
+            </p>
+        </div>
+    </div>
+    
+    <!-- زر المساعد الصوتي -->
+    <a href="javascript:void(0)" onclick="openMaeenModal()" class="voice-assistant-btn">
+        <i class="fas fa-microphone"></i>
+    </a>
+    
+    <!-- أضف كود مودال معين الصوتي هنا -->
+    <!-- ... كود المودال ... -->
+    
+    <script>
+        // جعل الدوال متاحة عالمياً
+        window.openMaeenModal = function() {
+            if (typeof openMaeenModal === 'function') {
+                openMaeenModal();
+            } else {
+                alert('يتم تحميل المساعد الصوتي...');
+            }
+        };
+        
+        // إضافة تفاعل لزر الطلب
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const plateType = this.closest('.plate-card').querySelector('h3').textContent;
+                alert(`تم إضافة ${plateType} إلى سلة الطلبات`);
+            });
+        });
+    </script>
+</body>
+</html>

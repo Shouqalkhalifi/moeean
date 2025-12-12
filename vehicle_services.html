@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات المركبات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(123, 31, 162, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffeb3b, #fff59d);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #7b1fa2;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #7b1fa2, #9c27b0);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(123, 31, 162, 0.3);
+        }
+        
+        .service-card h3 {
+            color: #7b1fa2;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(123, 31, 162, 0.3);
+            background: linear-gradient(135deg, #6a1b9a, #7b1fa2);
+        }
+        
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid #7b1fa2;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #7b1fa2;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .voice-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(123, 31, 162, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .voice-assistant-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(123, 31, 162, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-car"></i> خدمات المركبات المتكاملة</h1>
+            <p>إدارة وتسجيل المركبات، الفحص الفني، التأمين، وخدمات الصيانة والدعم</p>
+        </div>
+        
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-number">5.2M+</div>
+                <div class="stat-label">مركبة مسجلة</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">معدل الرضا</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">دعم فني</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">مركز خدمة</div>
+            </div>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3><i class="fas fa-id-card-alt"></i> تسجيل مركبة جديدة</h3>
+                <p>تسجيل المركبات الجديدة المستوردة أو المحلية مع إصدار الوثائق الرسمية</p>
+                <a href="#" class="btn">بدأ التسجيل <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3><i class="fas fa-handshake"></i> نقل ملكية مركبة</h3>
+                <p>نقل ملكية المركبات بين الأفراد مع تحديث السجلات الرسمية والرسوم</p>
+                <a href="#" class="btn">بدأ النقل <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3><i class="fas fa-history"></i> تجديد تسجيل مركبة</h3>
+                <p>تجديد تسجيل المركبات المنتهي مع الفحص الفني وتحديث بيانات التأمين</p>
+                <a href="#" class="btn">بدأ التجديد <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3><i class="fas fa-clipboard-check"></i> الفحص الفني</h3>
+                <p>إجراء الفحص الفني الدوري للمركبات وحجز مواعيد الفحص في المراكز المعتمدة</p>
+                <a href="#" class="btn">حجز موعد <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3><i class="fas fa-file-medical"></i> تحديث التأمين</h3>
+                <p>تحديث وتجديد وثائق التأمين الإلزامي للمركبات مع الشركات المعتمدة</p>
+                <a href="#" class="btn">تحديث التأمين <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <h3><i class="fas fa-file-exclamation"></i> بلاغات الحوادث</h3>
+                <p>تقديم بلاغات الحوادث المرورية وتقدير الأضرار وإصدار التقارير الرسمية</p>
+                <a href="#" class="btn">تقديم بلاغ <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="traffic.html" class="btn" style="background: linear-gradient(135deg, #2e7d32, #388e3c);">
+                <i class="fas fa-arrow-right"></i> الانتقال إلى المرور
+            </a>
+            <a href="dashboard.html" class="btn" style="background: linear-gradient(135deg, #666, #888); margin-right: 15px;">
+                <i class="fas fa-home"></i> الرئيسية
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 إدارة خدمات المركبات - وزارة الداخلية. جميع الحقوق محفوظة.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">
+                <i class="fas fa-phone"></i> هاتف الدعم: 19994 | 
+                <i class="fas fa-envelope"></i> البريد: vehicles@moi.gov.sa
+            </p>
+        </div>
+    </div>
+    
+    <!-- زر المساعد الصوتي -->
+    <a href="javascript:void(0)" onclick="openMaeenModal()" class="voice-assistant-btn">
+        <i class="fas fa-microphone"></i>
+    </a>
+    
+    <!-- أضف كود مودال معين الصوتي هنا -->
+    <!-- ... كود المودال ... -->
+    
+    <script>
+        // جعل الدوال متاحة عالمياً
+        window.openMaeenModal = function() {
+            if (typeof openMaeenModal === 'function') {
+                openMaeenModal();
+            } else {
+                alert('يتم تحميل المساعد الصوتي...');
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأحوال المدنية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ef6c00 0%, #f57c00 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(239, 108, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffffff, #ffcc80);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #ef6c00;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ef6c00, #f57c00);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #ef6c00, #f57c00);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(239, 108, 0, 0.3);
+        }
+        
+        .service-card h3 {
+            color: #ef6c00;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #ef6c00, #f57c00);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(239, 108, 0, 0.3);
+            background: linear-gradient(135deg, #e65100, #ef6c00);
+        }
+        
+        .documents-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid #4caf50;
+        }
+        
+        .documents-section h3 {
+            color: #4caf50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .document-item {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .document-item:hover {
+            transform: translateY(-5px);
+            border-color: #4caf50;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+        }
+        
+        .document-icon {
+            font-size: 2.5rem;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        
+        .document-item h4 {
+            color: #388e3c;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .voice-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #ef6c00, #f57c00);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(239, 108, 0, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .voice-assistant-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(239, 108, 0, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .documents-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-users"></i> السجل المدني والأحوال الشخصية</h1>
+            <p>إصدار وتجديد البطاقات الشخصية، شهادات الميلاد والوفاة، وتسجيل الأسر والعائلات</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h3><i class="fas fa-user-circle"></i> البطاقة الشخصية</h3>
+                <p>إصدار وتجديد البطاقة الشخصية للمواطنين، تحديث البيانات، وإصدار بدل فاقد</p>
+                <a href="#" class="btn">بدأ المعاملة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <h3><i class="fas fa-file-medical"></i> شهادة الميلاد</h3>
+                <p>إصدار شهادات الميلاد، تحديث بيانات المواليد، واستخراج صور رسمية</p>
+                <a href="#" class="btn">بدأ المعاملة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-book-dead"></i>
+                </div>
+                <h3><i class="fas fa-file-contract"></i> شهادة الوفاة</h3>
+                <p>إصدار شهادات الوفاة، تسجيل حالات الوفاة، وإصدار تصاريح الدفن</p>
+                <a href="#" class="btn">بدأ المعاملة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3><i class="fas fa-user-friends"></i> سجل الأسرة</h3>
+                <p>تسجيل وحذف أفراد الأسرة، تحديث صلة القرابة، وتعديل بيانات العائلة</p>
+                <a href="#" class="btn">بدأ المعاملة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <h3><i class="fas fa-edit"></i> تعديل البيانات</h3>
+                <p>تعديل الأسماء، الأعمار، الجنسيات، والعناوين في السجلات المدنية</p>
+                <a href="#" class="btn">بدأ المعاملة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-print"></i>
+                </div>
+                <h3><i class="fas fa-copy"></i> إصدار المستندات</h3>
+                <p>استخراج صور مصدقة من المستندات المدنية وإصدار الشهادات الرسمية</p>
+                <a href="#" class="btn">بدأ المعاملة <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+        
+        <div class="documents-section">
+            <h3><i class="fas fa-folder-open"></i> المستندات المتاحة إلكترونياً</h3>
+            <div class="documents-grid">
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="fas fa-id-badge"></i>
+                    </div>
+                    <h4>صورة البطاقة</h4>
+                    <p>صورة مصدقة من البطاقة الشخصية</p>
+                </div>
+                
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>شهادة ميلاد</h4>
+                    <p>شهادة ميلاد إلكترونية موقعة</p>
+                </div>
+                
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h4>شهادة وفاة</h4>
+                    <p>شهادة وفاة رسمية</p>
+                </div>
+                
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>شهادة عائلة</h4>
+                    <p>بيان أفراد الأسرة</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="dashboard.html" class="btn" style="background: linear-gradient(135deg, #666, #888);">
+                <i class="fas fa-arrow-right"></i> العودة إلى الرئيسية
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 إدارة الأحوال المدنية - وزارة الداخلية. جميع الحقوق محفوظة.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">
+                <i class="fas fa-phone"></i> هاتف الدعم: 19996 | 
+                <i class="fas fa-envelope"></i> البريد: civil@moi.gov.sa
+            </p>
+        </div>
+    </div>
+    
+    <!-- زر المساعد الصوتي -->
+    <a href="javascript:void(0)" onclick="openMaeenModal()" class="voice-assistant-btn">
+        <i class="fas fa-microphone"></i>
+    </a>
+    
+    <!-- أضف كود مودال معين الصوتي هنا -->
+    <!-- ... كود المودال ... -->
+    
+    <script>
+        // جعل الدوال متاحة عالمياً
+        window.openMaeenModal = function() {
+            if (typeof openMaeenModal === 'function') {
+                openMaeenModal();
+            } else {
+                alert('يتم تحميل المساعد الصوتي...');
+            }
+        };
+    </script>
+</body>
+</html>

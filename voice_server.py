@@ -7,6 +7,8 @@ from datetime import datetime
 import sys
 from pathlib import Path
 import subprocess
+import atexit
+import shutil
 
 # البحث عن FFmpeg في المواقع الشائعة
 possible_paths = [
@@ -54,39 +56,58 @@ if ffmpeg_dir and ffmpeg_dir not in os.environ['PATH']:
 app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
 
-# إنشاء مجلد مؤقت مخصص للتطبيق
+# إنشاء مجلد مؤقت مخصص للتطالب
 TEMP_DIR = Path(tempfile.gettempdir()) / "mueayann_temp"
+
+# تنظيف المجلد المؤقت عند بدء التطبيق
+if TEMP_DIR.exists():
+    shutil.rmtree(TEMP_DIR, ignore_errors=True)
 os.makedirs(TEMP_DIR, exist_ok=True)
 print(f"📁 المجلد المؤقت: {TEMP_DIR}")
 
-# تحميل نموذج Whisper
-print("⏳ جاري تحميل نموذج Whisper...")
-model = whisper.load_model("base")
-print("✅ تم تحميل النموذج بنجاح!")
+# تنظيف الملفات المؤقتة عند إغلاق التطبيق
+def cleanup_temp_files():
+    if TEMP_DIR.exists():
+        shutil.rmtree(TEMP_DIR, ignore_errors=True)
+        print("🧹 تم تنظيف الملفات المؤقتة")
+
+atexit.register(cleanup_temp_files)
+
+# تحميل نموذج Whisper مع معالجة الأخطاء
+try:
+    print("⏳ جاري تحميل نموذج Whisper...")
+    model = whisper.load_model("base")
+    print("✅ تم تحميل النموذج بنجاح!")
+except Exception as e:
+    print(f"❌ فشل في تحميل نموذج Whisper: {str(e)}")
+    print("⚠️ تأكد من تثبيت جميع المتطلبات المطلوبة")
+    model = None  # سنقوم بالتحقق من وجود النموذج قبل استخدامه
 
 # تعريف مسارات الصفحات
 PAGE_ROUTES = {
-    "الخدمات": "services",
-    "إستعلامات": "inquiries",
-    "الأمن العام": "public_security",
-    "المرور": "traffic",
-    "الأحوال المدنية": "civil_status",
-    "الجوازات": "passports",
-    "الوافدين": "expats",
-    "خدمات المركبات": "vehicle_services",
-    "مبايعة المركبات": "vehicle_sales",
-    "إدارة المركبات": "vehicle_management",
-    "لوحات المركبات": "vehicle_plates",
-    "المزادات": "auctions",
-    "الخدمات العامة": "general_services",
-    "تحديث معلومات الجواز": "update_passport",
-    "خدمات المقيمين": "resident_services",
-    "التأشيرات": "visas",
-    "الاستعلام عن التأمين الصحي": "health_insurance",
-    "البصمة": "fingerprint",
-    "سجل السفر": "travel_history",
-    "تأشيرة خروج وعودة": "exit_reentry_visa",
-    "تقرير المقيم": "resident_report"
+    "الخدمات": "services.html",
+    "إستعلامات": "inquiries.html",
+    "الأمن العام": "public_security.html",
+    "المرور": "traffic.html",
+    "الأحوال المدنية": "civil_status.html",
+    "الجوازات": "passports.html",
+    "الوافدين": "expats.html",
+    "خدمات المركبات": "vehicle_services.html",
+    "مبايعة المركبات": "vehicle_sales.html",
+    "إدارة المركبات": "vehicle_management.html",
+    "لوحات المركبات": "vehicle_plates.html",
+    "المزادات": "auctions.html",
+    "الخدمات العامة": "general_services.html",
+    "تحديث معلومات الجواز": "update_passport.html",
+    "خدمات المقيمين": "resident_services.html",
+    "التأشيرات": "visas.html",
+    "الاستعلام عن التأمين الصحي": "health_insurance.html",
+    "البصمة": "fingerprint.html",
+    "سجل السفر": "travel_history.html",
+    "تأشيرة خروج وعودة": "exit_reentry_visa.html",
+    "تقرير المقيم": "resident_report.html",
+    "توصيل الوثائق": "document_delivery.html",
+    "طلب توصيل وثائق": "document_delivery.html"
 }
 
 @app.route('/')
@@ -145,10 +166,17 @@ def serve_file(path):
 
 @app.route('/transcribe', methods=['POST'])
 def transcribe_audio():
+    if model is None:
+        return jsonify({
+            'success': False, 
+            'error': 'نموذج التعرف على الصوت غير متاح. يرجى التأكد من تثبيت النموذج المطلوب.'
+        })
+        
     temp_path = None
+    converted_path = None
     try:
-        if 'audio' not in request.files:
-            return jsonify({'success': False, 'error': 'لم يتم إرسال ملف صوتي'})
+        if 'audio' not in request.files or not request.files['audio'].filename:
+            return jsonify({'success': False, 'error': 'لم يتم إرسال ملف صوتي صالح'})
 
         audio_file = request.files['audio']
         
@@ -194,11 +222,20 @@ def transcribe_audio():
                 
                 # استخدام الملف المحول للتحويل إلى نص
                 print(f"🔊 جاري تحويل الصوت إلى نص...")
-                result = model.transcribe(
-                    converted_path,
-                    language="ar",
-                    fp16=False  # تعطيل FP16 لأنه غير مدعوم على CPU
-                )
+                try:
+                    result = model.transcribe(
+                        converted_path,
+                        language="ar",
+                        fp16=False,  # تعطيل FP16 لأنه غير مدعوم على CPU
+                        verbose=True  # إظهار معلومات إضافية
+                    )
+                except Exception as e:
+                    print(f"❌ خطأ في تحويل الصوت إلى نص: {str(e)}")
+                    return jsonify({
+                        'success': False, 
+                        'error': 'فشل في تحويل الصوت إلى نص',
+                        'details': str(e)
+                    })
                 
                 # حذف الملف المحول بعد الانتهاء
                 try:
@@ -213,25 +250,22 @@ def transcribe_audio():
             transcription = result["text"].strip()
             print(f"✅ النص المحول: {transcription}")
             
-            # تحليل النص للبحث عن أوامر التوجيه
-            command_keywords = ["وجهني", "اذهب", "افتح", "أريد", "أرغب"]
-            if any(keyword in transcription for keyword in command_keywords):
-                for keyword, route in PAGE_ROUTES.items():
-                    if keyword in transcription:
-                        return jsonify({
-                            'success': True,
-                            'text': f"جاري توجيهك إلى صفحة {keyword}",
-                            'redirect_to': f"/{route}"
-                        })
-                
-                return jsonify({
-                    'success': True,
-                    'text': "عذراً، لم أتمكن من العثور على الصفحة المطلوبة. الرجاء المحاولة مرة أخرى."
-                })
+            # البحث عن أي صفحة مطابقة في النص
+            for keyword, route in PAGE_ROUTES.items():
+                if keyword in transcription:
+                    print(f"🔍 تم العثور على أمر: {keyword} - إعادة توجيه إلى: {route}")
+                    return jsonify({
+                        'success': True,
+                        'text': f"جاري توجيهك إلى صفحة {keyword}",
+                        'redirect_to': f"/{route}"
+                    })
             
+            # إذا لم يتم العثور على صفحة مطابقة، إرجاع النص فقط
+            print("⚠️ لم يتم العثور على صفحة مطابقة")
             return jsonify({
                 'success': True,
-                'text': transcription
+                'text': transcription,
+                'redirect_to': None
             })
             
         except Exception as e:
@@ -253,7 +287,22 @@ def transcribe_audio():
             
     except Exception as e:
         print(f"❌ خطأ: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)})
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'success': False, 
+            'error': 'حدث خطأ أثناء معالجة الطلب',
+            'details': str(e)
+        })
+    finally:
+        # تنظيف الملفات المؤقتة
+        try:
+            if temp_path and os.path.exists(temp_path):
+                os.remove(temp_path)
+            if 'converted_path' in locals() and converted_path and os.path.exists(converted_path):
+                os.remove(converted_path)
+        except Exception as e:
+            print(f"⚠️ تحذير: فشل في حذف الملفات المؤقتة: {e}")
 
 if __name__ == '__main__':
     print("\n" + "="*50)

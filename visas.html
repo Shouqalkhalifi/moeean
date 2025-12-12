@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التأشيرات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00796b 0%, #009688 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 121, 107, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffeb3b, #fff59d);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .visa-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .visa-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .visa-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: #00796b;
+        }
+        
+        .visa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #00796b, #009688);
+        }
+        
+        .visa-icon {
+            background: linear-gradient(135deg, #00796b, #009688);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 121, 107, 0.3);
+        }
+        
+        .visa-card h3 {
+            color: #00796b;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .visa-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .visa-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .visa-features li {
+            margin-bottom: 8px;
+            padding-right: 25px;
+            position: relative;
+            color: #666;
+        }
+        
+        .visa-features li:before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: #00796b;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00796b, #009688);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 121, 107, 0.3);
+            background: linear-gradient(135deg, #004d40, #00796b);
+        }
+        
+        .status-check {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid #ff9800;
+        }
+        
+        .status-check h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #00796b;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.1);
+        }
+        
+        .result-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-right: 4px solid #4caf50;
+            display: none;
+        }
+        
+        .result-box.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .voice-assistant-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, #00796b, #009688);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 121, 107, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .voice-assistant-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(0, 121, 107, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .visa-types {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-stamp"></i> إدارة التأشيرات والتصاريح</h1>
+            <p>إصدار وتجديد تأشيرات الدخول، تأشيرات العمل، التأشيرات السياحية، وتصاريح الزيارة</p>
+        </div>
+        
+        <div class="visa-types">
+            <div class="visa-card">
+                <div class="visa-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3><i class="fas fa-user-tie"></i> تأشيرة عمل</h3>
+                <p>تأشيرات العمل للوافدين، متطلبات الكفالة، وتصاريح مزاولة المهن</p>
+                <ul class="visa-features">
+                    <li>صالحة لمدة سنتين</li>
+                    <li>قابلة للتجديد</li>
+                    <li>تشمل التأمين الصحي</li>
+                    <li>لمختلف المهن</li>
+                </ul>
+                <a href="#" class="btn">طلب تأشيرة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="visa-card">
+                <div class="visa-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <h3><i class="fas fa-umbrella-beach"></i> تأشيرة زيارة وسياحة</h3>
+                <p>تأشيرات الزيارة العائلية، السياحية، العلاجية، والزيارات الدينية</p>
+                <ul class="visa-features">
+                    <li>صالحة لمدة 90 يوم</li>
+                    <li>قابلة للتمديد</li>
+                    <li>متعددة الدخول</li>
+                    <li>إلكترونية وسريعة</li>
+                </ul>
+                <a href="#" class="btn">طلب تأشيرة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="visa-card">
+                <div class="visa-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3><i class="fas fa-user-friends"></i> تأشيرة عائلية</h3>
+                <p>تأشيرات لم شمل الأسر، الزوجات، الأبناء، والوالدين للمقيمين</p>
+                <ul class="visa-features">
+                    <li>متطلبات محددة</li>
+                    <li>قابلة للتجديد</li>
+                    <li>تأمين صحي شامل</li>
+                    <li>معاملة عائلية</li>
+                </ul>
+                <a href="#" class="btn">طلب تأشيرة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="visa-card">
+                <div class="visa-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3><i class="fas fa-book"></i> تأشيرة دراسة</h3>
+                <p>تأشيرات الدراسة في الجامعات والمعاهد السعودية للطلاب الدوليين</p>
+                <ul class="visa-features">
+                    <li>لطلاب الجامعات</li>
+                    <li>قابلة للتجديد</li>
+                    <li>تصريح عمل جزئي</li>
+                    <li>تسهيلات خاصة</li>
+                </ul>
+                <a href="#" class="btn">طلب تأشيرة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="visa-card">
+                <div class="visa-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3><i class="fas fa-hospital"></i> تأشيرة علاج</h3>
+                <p>تأشيرات العلاج في المستشفيات والمراكز الطبية السعودية</p>
+                <ul class="visa-features">
+                    <li>للعلاج الطبي</li>
+                    <li>مرافق مريض</li>
+                    <li>تمديد حسب الحاجة</li>
+                    <li>تأمين صحي</li>
+                </ul>
+                <a href="#" class="btn">طلب تأشيرة <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="visa-card">
+                <div class="visa-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3><i class="fas fa-sync-alt"></i> تجديد وتعديل</h3>
+                <p>تجديد التأشيرات المنتهية، تعديل أنواع التأشيرات، ونقل الكفالة</p>
+                <ul class="visa-features">
+                    <li>تجديد إلكتروني</li>
+                    <li>تعديل المهنة</li>
+                    <li>نقل الكفالة</li>
+                    <li>إجراءات سريعة</li>
+                </ul>
+                <a href="#" class="btn">بدأ المعاملة <i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+        
+        <div class="status-check">
+            <h3><i class="fas fa-search"></i> الاستعلام عن حالة التأشيرة</h3>
+            <div class="form-group">
+                <label for="visaNumber"><i class="fas fa-hashtag"></i> رقم التأشيرة</label>
+                <input type="text" id="visaNumber" class="form-control" placeholder="أدخل رقم التأشيرة">
+            </div>
+            <div class="form-group">
+                <label for="passportNumber"><i class="fas fa-passport"></i> رقم الجواز</label>
+                <input type="text" id="passportNumber" class="form-control" placeholder="أدخل رقم الجواز">
+            </div>
+            <button class="btn" onclick="checkVisaStatus()" style="width: 100%;">
+                <i class="fas fa-search"></i> بحث عن التأشيرة
+            </button>
+            <div id="visaResult" class="result-box"></div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="expats.html" class="btn" style="background: linear-gradient(135deg, #1a237e, #283593);">
+                <i class="fas fa-arrow-right"></i> خدمات الوافدين
+            </a>
+            <a href="passports.html" class="btn" style="background: linear-gradient(135deg, #0a5f38, #1a7a4a); margin-right: 15px;">
+                <i class="fas fa-passport"></i> الجوازات
+            </a>
+            <a href="dashboard.html" class="btn" style="background: linear-gradient(135deg, #666, #888); margin-right: 15px;">
+                <i class="fas fa-home"></i> الرئيسية
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 إدارة التأشيرات - وزارة الداخلية. جميع الحقوق محفوظة.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">
+                <i class="fas fa-phone"></i> هاتف الدعم: 19998 | 
+                <i class="fas fa-envelope"></i> البريد: visas@moi.gov.sa
+            </p>
+        </div>
+    </div>
+    
+    <!-- زر المساعد الصوتي -->
+    <a href="javascript:void(0)" onclick="openMaeenModal()" class="voice-assistant-btn">
+        <i class="fas fa-microphone"></i>
+    </a>
+    
+    <!-- أضف كود مودال معين الصوتي هنا -->
+    <!-- ... كود المودال ... -->
+    
+    <script>
+        // جعل الدوال متاحة عالمياً
+        window.openMaeenModal = function() {
+            if (typeof openMaeenModal === 'function') {
+                openMaeenModal();
+            } else {
+                alert('يتم تحميل المساعد الصوتي...');
+            }
+        };
+        
+        // وظيفة التحقق من حالة التأشيرة
+        function checkVisaStatus() {
+            const visaNumber = document.getElementById('visaNumber').value;
+            const passportNumber = document.getElementById('passportNumber').value;
+            const resultBox = document.getElementById('visaResult');
+            
+            if (!visaNumber || !passportNumber) {
+                resultBox.innerHTML = '<p style="color: #d32f2f;"><i class="fas fa-exclamation-circle"></i> يرجى ملء جميع الحقول المطلوبة</p>';
+                resultBox.classList.add('show');
+                return;
+            }
+            
+            // محاكاة استجابة من الخادم
+            const statuses = ['صادرة', 'قيد المراجعة', 'مرفوضة', 'منتهية الصلاحية'];
+            const types = ['عمل', 'زيارة', 'عائلية', 'دراسة', 'علاج'];
+            const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            const randomDate = new Date(Date.now() + Math.random() * 86400000 * 30).toLocaleDateString('ar-SA');
+            
+            let statusColor = '#4caf50';
+            if (randomStatus === 'قيد المراجعة') statusColor = '#ff9800';
+            if (randomStatus === 'مرفوضة') statusColor = '#f44336';
+            if (randomStatus === 'منتهية الصلاحية') statusColor = '#9e9e9e';
+            
+            resultBox.innerHTML = `
+                <h4><i class="fas fa-file-alt" style="color: ${statusColor};"></i> معلومات التأشيرة:</h4>
+                <p><strong>رقم التأشيرة:</strong> ${visaNumber}</p>
+                <p><strong>رقم الجواز:</strong> ${passportNumber}</p>
+                <p><strong>نوع التأشيرة:</strong> ${randomType}</p>
+                <p><strong>حالة التأشيرة:</strong> <span style="color: ${statusColor}">${randomStatus}</span></p>
+                <p><strong>تاريخ الإصدار:</strong> ${randomDate}</p>
+                <p><strong>تاريخ الانتهاء:</strong> ${new Date(new Date(randomDate).getTime() + 86400000 * 365).toLocaleDateString('ar-SA')}</p>
+                ${randomStatus === 'صادرة' ? '<p><i class="fas fa-check-circle" style="color: #4caf50;"></i> التأشيرة جاهزة للاستخدام</p>' : ''}
+            `;
+            resultBox.classList.add('show');
+        }
+    </script>
+</body>
+</html>
