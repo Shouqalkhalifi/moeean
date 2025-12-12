@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <title>الرئيسية</title>
+    <meta name="format-detection" content="telephonne=no" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/dashboard9.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard11.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard13.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard14.css">
+    <script type="text/javascript" src="JS/jquery.min-1.11.1.js"></script>
+    <script type="text/javascript" src="JS/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+        var jq_bt = $;
+    </script>
+    <script type="text/javascript" src="JS/calendar_moi_dateConverter.js"></script>
+    <script type="text/javascript" src="JS/jquery.sliderTabs.js"></script>
+    <script type="text/javascript" src="JS/custom.js"></script>
+    <script type="text/javascript" src="JS/script.js"></script>
+    <script type="text/javascript" src="JS/dataTable.custom.ar.js"></script>
+    <script type="text/javascript" src="JS/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="JS/dataTables.responsive.min.js"></script>
+
+</head>
+
+<body class="rtl individuals">
+    <div id="topLinksId">
+        <a href="javascript:" id="return-to-top"><span class="glyphicon glyphicon-chevron-up"
+                aria-hidden="true"></span></a>
+        <header class="main-header main-inner-header">
+            <nav class="navbar navbar-default navbar-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-3 col-md-3 col-lg-3 left-side-top">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" aria-label="رؤية أبشر 2030 المملكة العربية السعودية"
+                                    alt="Absher">
+                                    <div class="mainlogo" alt="Absher"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 padding-0 col-md-8 col-lg-7" style="width: auto;">
+                            <ul class="topLinks after-login">
+                                <li class="topLinks_box user-profile">
+                                    <a>
+                                        <div class="box user-profile-circle">
+                                            <img id="topLinks_userImage" src="images/shopping.png" alt="مستخدم" />
+                                        </div>
+                                        <strong class="user_caption"><label
+                                                id="topLinks_userName">مرحبا</label></strong>
+                                    </a>
+                                </li>
+                                <li class="topLinks_box dashboard">
+                                    <a>
+                                        <div class="spritejobs box"></div>
+                                        <strong>لوحة المعلومات</strong>
+                                    </a>
+                                </li>
+                                <li class="topLinks_box editMobile">
+                                    <a>
+                                        <div class="spritejobs box"></div>
+                                        <strong>تعديل معلومات المستخدم </strong>
+                                    </a>
+                                </li>
+                                <li class="topLinks_box notification">
+                                    <a href="javascript:void(0)">
+                                        <div class="spritejobs box"></div>
+                                        <span class="badge badge-danger"></span>
+                                        <strong>الاشعارات</strong>
+                                    </a>
+                                    <!-- Inbox Notifications -->
+                                    <div class="inbox-popup">
+                                        <div class="inbox-popup__header">
+                                            <span>الإشعارات</span>
+                                        </div>
+                                        <div class="inbox-popup__body">
+                                            <ul class="list-unstyled inbox-popup__filter">
+                                                <li>
+                                                    <input type="radio" name="alert-type" value="1" id="spl-alert"
+                                                        checked="checked" />
+                                                    <label class="" for="spl-alert">
+                                                        <span>الإشعارات الخاصة</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <input type="radio" name="alert-type" value="2" id="gen-alert" />
+                                                    <label class="" for="gen-alert">
+                                                        <span>الإشعارات العامة</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                            <div class="noresult_wrapper hide">
+                                                <p class="bg-info">عذراً، لا توجد لديك رسائل في صندوق الوارد</p>
+                                            </div>
+                                            <div class="inbox-messages__wrapper"></div>
+                                        </div>
+                                    </div>
+                                    <div class="inbox-popup__overlay"></div>
+                                </li>
+                                <li class="topLinks_box userguide">
+                                    <a href="#" class="userguidelink">
+                                        <div class="spritejobs box"></div>
+                                        <strong>دليل الخدمات</strong>
+                                    </a>
+                                </li>
+                                <li class="topLinks_box languageal">
+                                    <a aria-label="تغيير اللغة إلى الإنجليزية" lang="en"
+                                        alt="تغيير اللغة إلى الإنجليزية">
+                                        <div class="spritejobs box"></div>
+                                        <strong>English</strong>
+                                    </a>
+                                </li>
+                                <li class="topLinks_box">
+                                    <a>
+                                        <div class="box">
+                                            <img src="images/maeen.png" alt="معين">
+                                        </div>
+                                        <strong>معين</strong>
+                                    </a>
+                                </li>
+                                <li class="topLinks_box">
+                                    <a>
+                                        <div class="spritejobs box icon-logout"></div>
+                                        <strong>تسجيل الخروج</strong>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    </div>
+    </main>
+    <section class="inner-main">
+        <div class="container">
+            <div class="row">
+                <div class="st-section">
+                    <div class="hiddenWidgetsDiv">
+                        <div class='component-container ibmDndRow hiddenWidgetsContainer id-Z7_483OVGF9OFGOULRCQADA8M6EC1'
+                            name='ibmHiddenWidgets'></div>
+                    </div>
+                    <div class="st-row">
+                        <div class="st-col st-col-whole">
+                            <div class='component-container wpthemeFull st-container ibmDndColumn id-Z7_1HDPT0QPQ311IJ5N7QO1LPMU52'
+                                name='ibmMainContainer'>
+                                <div class='component-control id-Z7_0I44H142KGD9E0AVBHMKCF10V1'>
+                                    <div id="back-button-title" style="display:none;">السابق</div>
+                                    <div id="more-button-title" style="display:none;">المزيد</div>
+                                    <div class="search-autocomplete">
+                                        <div id="customAutocomplete-table">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-search"></i> <span
+                                                        class="hidden-xs">بحث</span></div>
+                                                <input class="form-control input-lg" id="myInput" type="text"
+                                                    placeholder="اكتب هنا للبحث">
+                                            </div>
+                                            <div class="menu-complete" style="display:none;">
+                                                <table class="table table-striped">
+                                                    <tbody id="filterTable"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="main-menu-wrapper">
+                                        <section class="grid-wrapper grid-main animated">
+                                            <ul>
+                                                <li class="grid_item grid_item_1 wow zoomIn">
+                                                    <div class="box-module">
+                                                        <div class="options-images">
+                                                            <div>
+                                                                <div class="gridcol-img-wrapper">
+                                                                    <div>
+                                                                        <img src="images/icon1.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-titles">
+                                                            <div>
+                                                                <span>خدماتي</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-links">
+                                                            <div>
+                                                                <a class="services-sub">خدمات</a>
+                                                                <a class="enquiries-sub">إستعلامات</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="grid_item grid_item_2 wow zoomIn">
+                                                    <div class="box-module">
+                                                        <div class="options-images">
+                                                            <div>
+                                                                <div class="gridcol-img-wrapper">
+                                                                    <div>
+                                                                        <img src="images/icon2.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-titles">
+                                                            <div>
+                                                                <span>المركبات</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-links">
+                                                            <div>
+                                                                <a class="services-sub">خدمات</a>
+                                                                <a class="enquiries-sub">إستعلامات</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="grid_item grid_item_3 wow zoomIn">
+                                                    <div class="box-module">
+                                                        <div class="options-images">
+                                                            <div>
+                                                                <div class="gridcol-img-wrapper">
+                                                                    <div>
+                                                                        <img src="images/icon3.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-titles">
+                                                            <div>
+                                                                <span>أفراد الأسرة</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-links">
+                                                            <div>
+                                                                <a class="services-sub">خدمات</a>
+                                                                <a class="enquiries-sub">إستعلامات</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="grid_item grid_item_4 wow zoomIn">
+                                                    <div class="box-module">
+                                                        <div class="options-images">
+                                                            <div>
+                                                                <div class="gridcol-img-wrapper">
+                                                                    <div>
+                                                                        <img src="images/icon4.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-titles">
+                                                            <div>
+                                                                <span>العمالة</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-links">
+                                                            <div>
+                                                                <a class="services-sub">خدمات</a>
+                                                                <a class="enquiries-sub">إستعلامات</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="grid_item grid_item_5 wow zoomIn">
+                                                    <div class="box-module">
+                                                        <div class="options-images">
+                                                            <div>
+                                                                <div class="gridcol-img-wrapper">
+                                                                    <div>
+                                                                        <img src="images/icon17.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-titles">
+                                                            <div>
+                                                                <span>مواعيد</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="options-links">
+                                                            <div>
+                                                                <a class="services-sub">المزيد</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                        <section class="content_show">
+                                            <!-- My Services -->
+                                            <div class="grid-submenu grid-services">
+                                                <ul class="nav nav-pills">
+                                                    <li class="active"><a href="#" class="services-sub">خدمات</a></li>
+                                                    <li><a href="#" class="enquiries-sub">إستعلامات</a></li>
+                                                </ul>
+                                                <div class="grid-submenu-enquiries">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span
+                                                                class="sprites sprites navicon-electronicservices"></span>
+                                                            <em>خدماتي</em> <i class="icon-angle-left"></i>
+                                                            <em>إستعلامات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon22.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الخدمات
+                                                                    العامة</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon23.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">المرور</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon24.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الأحوال
+                                                                    المدنية</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon25.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الجوازات</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon7.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">المخالفات</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#"><img src="images/icon11.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الإدارة
+                                                                    العامة لشؤون الوافدين</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="grid-submenu-services">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span
+                                                                class="sprites sprites navicon-electronicservices"></span>
+                                                            <em>خدماتي</em> <i class="icon-angle-left"></i>
+                                                            <em>خدمات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon22.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">توصيل
+                                                                    الوثائق بالبريد</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon23.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">المرور</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon24.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الخدمات
+                                                                    العامة</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon25.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الإمارات
+                                                                    والمناطق</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon11.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الأحوال
+                                                                    المدنية</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon12.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الأمن
+                                                                    العام</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon6.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">المديرية
+                                                                    العامة للسجون</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#"><img src="images/icon3.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الجوازات</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#"><img src="images/icon2.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">الإدارة
+                                                                    العامة لشؤون الوافدين</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#"><img src="images/icon1.png" alt=""
+                                                                        style="width:24px; margin-left:6px;">خدمات
+                                                                    النيابة العامة</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Vehicles Services -->
+                                            <div class="grid-submenu vehicles-services">
+                                                <ul class="nav nav-pills">
+                                                    <li class="active"><a href="#" class="services-sub">خدمات</a></li>
+                                                    <li><a href="#" class="enquiries-sub">إستعلامات</a></li>
+                                                </ul>
+                                                <div class="grid-submenu-enquiries">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span class="sprites navicon-vehicleauthorization"></span>
+                                                            <em>خدمات المركبات</em> <i class="icon-angle-left"></i>
+                                                            <em>إستعلامات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-4">
+                                                                <a href="#">صلاحية التأمين على المركبات</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">وثيقة تأمين مركبة</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">إستعلام المركبات المحجوزة</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="grid-submenu-services">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span class="sprites navicon-vehicleauthorization"></span>
+                                                            <em>خدمات المركبات</em> <i class="icon-angle-left"></i>
+                                                            <em>خدمات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-3">
+                                                                <a href="#">مبايعة المركبات</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">محفظة لوحات المركبات الرقمية</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">إدارة المركبات</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">مزادات</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">مزاد اللوحات للأفراد</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Family Members Services-->
+                                            <div class="grid-submenu dependents-services">
+                                                <ul class="nav nav-pills">
+                                                    <li class="active"><a href="#" class="services-sub">خدمات</a></li>
+                                                    <li><a href="#" class="enquiries-sub">إستعلامات</a></li>
+                                                </ul>
+                                                <div class="grid-submenu-enquiries">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span class="sprites navicon-expatriateaffairs"></span>
+                                                            <em>خدمات أفراد الأسرة</em> <i class="icon-angle-left"></i>
+                                                            <em>إستعلامات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-3">
+                                                                <a href="#">العمالة الجديدة والزائرين</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">معلومات الإستخدام</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">معلومات جواز السفر</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">معلومات سجل السفر</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">الإستعلام عن التأمين الصحي</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">حالة تأشيرة خروج وعودة</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">الإستعلام العام عن البصمة</a>
+                                                            </li>
+                                                            <li class="col-sm-3">
+                                                                <a href="#">إستعلام عن تقرير مقيم</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="grid-submenu-services">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span class="sprites navicon-expatriateaffairs"></span>
+                                                            <em>خدمات أفراد الأسرة</em> <i class="icon-angle-left"></i>
+                                                            <em>خدمات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-4">
+                                                                <a href="#">تحديث معلومات جواز للمقيمين</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">التأشيرات</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">خدمات المقيمين</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Sponserees Services -->
+                                            <div class="grid-submenu sponserees-services">
+                                                <ul class="nav nav-pills">
+                                                    <li class="active"><a href="#" class="services-sub">خدمات</a></li>
+                                                    <li><a href="#" class="enquiries-sub">إستعلامات</a></li>
+                                                </ul>
+
+                                                <div class="grid-submenu-enquiries">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span class="sprites navicon-expatriateaffairs"></span>
+                                                            <em>خدمات العمالة</em> <i class="icon-angle-left"></i>
+                                                            <em>إستعلامات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-4">
+                                                                <a href="#">عرض المكفولين</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">حالة تأشيرة خروج وعودة</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">الاستعلام العام عن البصمة</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">الاستعلام عن عودة العمالة من الخارج</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">معلومات سجل السفر</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">معلومات الإستخدام</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="grid-submenu-services">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span class="sprites navicon-expatriateaffairs"></span>
+                                                            <em>خدمات العمالة</em> <i class="icon-angle-left"></i>
+                                                            <em>خدمات</em>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-4">
+                                                                <a href="#">التأشيرات</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">تحديث معلومات جواز المقيمين</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">نقل الخدمات</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">الإبلاغ عن تغيب وافد</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">تجديد الإقامة</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">إصدار الإقامة</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">إصدار تأشيرة خروج نهائي خلال فترة التجربة</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">الإبلاغ عن تغيب العمالة المنزلية</a>
+                                                            </li>
+                                                            <li class="col-sm-4">
+                                                                <a href="#">خدمات المقيمين</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Appointments -->
+                                            <div class="grid-submenu appointments-services">
+                                                <div class="grid-submenu-services">
+                                                    <div class="multi-level-submenu-header">
+                                                        <h4>
+                                                            <span
+                                                                class="sprites sprites navicon-electronicservices"></span>
+                                                            مواعيد
+                                                        </h4>
+                                                    </div>
+                                                    <div class="submenu-wrapper">
+                                                        <ul class="row">
+                                                            <li class="col-sm-3"><a href="#">الأحوال المدنية</a></li>
+                                                            <li class="col-sm-3"><a href="#">المرور</a></li>
+                                                            <li class="col-sm-3"><a href="#">الأمن العام</a></li>
+                                                            <li class="col-sm-3"><a href="#">الجوازات</a></li>
+                                                            <li class="col-sm-3"><a href="#">الأسلحة والمتفجرات</a></li>
+                                                            <li class="col-sm-3"><a href="#">الشرطة</a></li>
+                                                            <li class="col-sm-3"><a href="#">الإدارة العامة لشؤون الوافدين</a></li>
+                                                            <li class="col-sm-3"><a href="#">المديرية العامة للسجون</a></li>
+                                                            <li class="col-sm-3"><a href="#">مكافحة المخدرات</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <script>
+                                        // ضمان ظهور صف البطاقات عند فتح الصفحة وإخفاء الصندوق الأبيض،
+                                        // ومسح الحالة السابقة المخزّنة التي قد تجعل القائمة الفرعية تُفتح تلقائيًا
+                                        $(document).ready(function () {
+                                            try {
+                                                // إظهار شبكة البطاقات وإخفاء الصندوق الأبيض
+                                                $(".grid-wrapper").show();
+                                                $(".content_show").css({ zIndex: "", opacity: 0 });
+
+                                                // إزالة الحالة السابقة من localStorage حتى لا يخفي script.js الشبكة تلقائيًا
+                                                localStorage.removeItem("parentindex");
+                                                localStorage.removeItem("parentclass");
+                                                localStorage.removeItem("childIndex");
+                                                localStorage.removeItem("childClass");
+                                                localStorage.removeItem("currentClick");
+                                                localStorage.removeItem("sprite");
+                                            } catch (e) {
+                                                // في حال تعطيل localStorage في المتصفح نتجاهل الخطأ
+                                                console.error(e && e.message ? e.message : e);
+                                            }
+                                        });
+                                    </script>
+                                    <style>
+                                        .vehicles-services .submenu-wrapper a::before,
+                                        .dependents-services .submenu-wrapper a::before,
+                                        .sponserees-services .submenu-wrapper a::before,
+                                        .appointments-services .submenu-wrapper a::before {
+                                            content: '';
+                                            display: inline-block;
+                                            width: 6px;
+                                            height: 6px;
+                                            margin-left: 6px;
+                                            border-radius: 50%;
+                                            background-color: #009b5a;
+                                            /* أخضر */
+                                            vertical-align: middle;
+                                        }
+
+                                        #ludContainer {
+                                            display: none !important;
+                                        }
+
+                                        .popular-absherReport>div.icon:before {
+                                            background: url(/wps/wcm/myconnect/individuals/011a1140-2313-487d-b3e8-69e6064422b1/report-icon.svg?MOD=AJPERES&amp;CACHEID=ROOTWORKSPACE.Z18_G11AH2G0L0Q000QCOAIADT26B5-011a1140-2313-487d-b3e8-69e6064422b1-oMgRT5c);
+                                            background-size: 50%;
+                                            background-repeat: no-repeat;
+                                            background-position: center;
+                                        }
+
+                                        ol.breadcrumb {
+                                            display: none !important;
+                                        }
+
+                                        a.issue\/renewelectronicpassport {
+                                            pointer-events: none;
+                                            ;
+                                        }
+
+                                        .ltr a.issue\/renewelectronicpassport:after {
+                                            content: 'Soon';
+                                        }
+
+                                        .rtl a.issue\/renewelectronicpassport:after {
+                                            content: 'قريبًا';
+                                        }
+
+                                        h1 {
+                                            position: relative;
+                                            font-size: 18px;
+                                            z-index: 1;
+                                            overflow: hidden;
+                                            text-align: center;
+                                            color: #7f7f7f;
+                                            margin: 10px 9%;
+                                            font-weight: bold;
+                                        }
+
+                                        h1:before,
+                                        h1:after {
+                                            position: absolute;
+                                            top: 51%;
+                                            overflow: hidden;
+                                            width: 50%;
+                                            height: 1px;
+                                            content: '\a0';
+                                            background-color: #a6a6a6;
+                                        }
+
+                                        h1:before {
+                                            margin-left: -53%;
+                                        }
+
+                                        h1:after {
+                                            margin-left: 3%;
+                                        }
+
+                                        .main-slider-container,
+                                        custom-owl-carousel {
+                                            margin-top: 35px;
+                                        }
+                                    </style>
+                                    <div class="custom-owl-carousel">
+                                        <h1 style="direction:ltr">خدمات أخرى</h1>
+                                        <div class="owl-carousel">
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-absherReport">
+                                                    <div class="ribbon red"><span>جديد</span></div>
+                                                    <div class="icon"><img src="images/report-icon.svg" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>إصدار شهادة خلو سوابق</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-absherReport">
+                                                    <div class="ribbon red"><span>جديد</span></div>
+                                                    <div class="icon"><img src="images/report-icon.svg" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>تقارير أبشر</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-vehicleownershiptransfer">
+                                                    <!-- div class="ribbon red"><span>جديد</span></div -->
+                                                    <div class="icon"><img src="images/icon22.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>مبايعة المركبات</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-onlineplateauctionservice">
+                                                    <!-- div class="ribbon red"><span>جديد</span></div -->
+                                                    <div class="icon"><img src="images/icon4.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>مزاد اللوحات الإلكتروني</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-generalizationreportquery">
+                                                    <div class="icon"><img src="images/icon6.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>إيقاف الخدمات وقيود السفر</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-detailedquerytrafficviolation">
+                                                    <div class="icon"><img src="images/icon7.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>الاستعلام الشامل عن المخالفات المرورية</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-publicqueryavailablefunds">
+                                                    <div class="icon"><img src="images/icon11.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>رصيد المدفوعات الحكومية</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-queryiqamaexpiryservice">
+                                                    <div class="icon"><img src="images/icon12.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>الاستعلام عن صلاحية الإقامة</label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-queryninexpiryservice">
+                                                    <div class="icon"><img src="images/icon17.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>التحقق من صلاحية الهوية </label>
+                                                </a>
+                                            </div>
+
+                                            <div class="item">
+                                                <a class="circlebox-img popular-healthinsuranceforresidentsinformation">
+                                                    <div class="icon"><img src="images/icon25.png" alt=""
+                                                            style="width:40px;"></div>
+                                                    <label>معلومات التأمين الصحي للمقيمين </label>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $(document).ready(function () {
+                                            setTimeout(function () {
+                                                if (!jq_bt || !jq_bt.fn || typeof jq_bt.fn.owlCarousel !== "function") {
+                                                    return;
+                                                }
+                                                jq_bt(".custom-owl-carousel .owl-carousel").owlCarousel({
+                                                    loop: false,
+                                                    rtl: $("body").hasClass("rtl") ? true : false,
+                                                    dots: true,
+                                                    nav: true,
+                                                    // استخدام أسهم نصية بسيطة بدلاً من أيقونات لا تظهر
+                                                    navText: $("body").hasClass("rtl")
+                                                        ? ['<span class="owl-arrow">&#10094;</span>', '<span class="owl-arrow">&#10095;</span>']
+                                                        : ['<span class="owl-arrow">&#10094;</span>', '<span class="owl-arrow">&#10095;</span>'],
+
+                                                    responsive: {
+                                                        0: {
+                                                            items: 1
+                                                        },
+                                                        320: {
+                                                            items: 1
+                                                        },
+                                                        480: {
+                                                            items: 2
+                                                        },
+                                                        768: {
+                                                            items: 3
+                                                        },
+                                                        1024: {
+                                                            items: 3
+                                                        },
+                                                        1366: {
+                                                            items: 5
+                                                        }
+                                                    }
+                                                });
+                                            }, 100);
+                                        });
+                                    </script>
+                                    <style>
+                                        .custom-owl-carousel {
+                                            margin-top: 70px
+                                        }
+
+                                        .custom-owl-carousel .owl-carousel {
+                                            padding-left: 75px;
+                                            padding-right: 75px
+                                        }
+
+                                        .custom-owl-carousel .owl-nav {
+                                            margin-top: -60px !important
+                                        }
+
+                                        .custom-owl-carousel .owl-carousel .owl-stage-outer {
+                                            padding-top: 10px
+                                        }
+
+                                        /* Center icon inside each Other Services card */
+                                        .custom-owl-carousel .circlebox-img .icon {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            height: 120px;
+                                        }
+
+                                        .custom-owl-carousel .circlebox-img .icon img {
+                                            max-width: 60px;
+                                            height: auto;
+                                        }
+
+                                        .custom-owl-carousel .owl-theme .owl-nav .icon-angle-right,
+                                        .custom-owl-carousel .owl-theme .owl-nav .icon-angle-left {
+                                            font-size: 1.6em
+                                        }
+
+                                        .custom-owl-carousel .circlebox-img:hover {
+                                            text-decoration: none;
+                                            box-shadow: 0 2px 10px rgb(0 0 0 / 10%), 0 2px 10px rgb(0 0 0 / 10%)
+                                        }
+
+                                        .mb-25 {
+                                            margin-bottom: 25px;
+                                        }
+
+                                        .custom-owl-carousel .owl-dots {
+                                            text-align: center;
+                                            display: flex;
+                                            justify-content: center;
+                                        }
+
+                                        .custom-owl-carousel .owl-dot.active {
+                                            background-color: #00ab67 !important;
+                                        }
+
+                                        .custom-owl-carousel .owl-dot {
+                                            border: 1px solid #00ab67 !important;
+                                            border-radius: 50% !important;
+                                            background-color: #fff !important;
+                                            margin: 5px;
+                                            width: 15px !important;
+                                            height: 15px !important;
+                                            padding: 0px !important;
+                                        }
+
+                                        .custom-owl-carousel .disabled .icon-left-big:before,
+                                        .custom-owl-carousel .disabled .icon-right-big:before {
+                                            color: #cccccc;
+                                        }
+                                    </style>
+
+                                    <style type="text/css">
+                                        .re-edited-box-icon {
+                                            margin-block-start: 1rem;
+                                        }
+
+                                        .re-edited-box-icon img {
+                                            width: 240px;
+                                        }
+
+                                        [data-theme="dark"].re-edited-box-icon {
+                                            display: none;
+                                        }
+
+                                        .a11y-cc-dark [data-theme="light"].re-edited-box-icon {
+                                            display: none;
+                                        }
+
+                                        .a11y-cc-dark [data-theme="dark"].re-edited-box-icon {
+                                            display: block;
+                                        }
+
+                                        @media (min-width: 768px) and (max-width:991px) {
+                                            body {
+                                                padding-bottom: 670px !important;
+                                            }
+                                        }
+
+                                        @media (min-width: 992px) {
+                                            body {
+                                                padding-bottom: 390px !important;
+                                            }
+                                        }
+
+                                        @media (max-width: 768px) {
+                                            .footer--body_toolkit div {
+                                                align-items: center;
+                                            }
+
+                                            .re-edited-box-icon a {
+                                                text-align: center;
+                                                display: block;
+                                            }
+                                        }
+                                    </style>
+
+                                    <footer id="footerId" class="footer footer-innerpage">
+                                        <div class="footer-main">
+                                            <div class="container">
+                                                <div class="footer-grid-container">
+                                                    <div class="footer-grid-item-1">
+                                                        <h3>وسائل التواصل الاجتماعي</h3>
+                                                        <div class="social-toolbar">
+                                                            <ul class="list-inline list-social">
+                                                                <li><a href="http://www.youtube.com/user/moigovsa"
+                                                                        alt="يوتيوب" title="يوتيوب" target="_blank"></a>
+                                                                </li>
+                                                                <li><a href="https://twitter.com/absher" alt="تويتر"
+                                                                        title="تويتر" target="_blank"></a>
+                                                                </li>
+                                                                <li><a href="https://www.facebook.com/AbsherKSA"
+                                                                        alt="فيسبوك" title="فيسبوك" target="_blank"></a>
+                                                                </li>
+                                                                <li><a href="https://www.snapchat.com/add/absher.sa"
+                                                                        alt="سناب شات" title="سناب شات"
+                                                                        target="_blank"></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="accessibility-toolbar">
+                                                            <h3>أدوات المساعدة</h3>
+                                                            <ul class="list-inline">
+                                                                <li>
+                                                                    <a href="javascript: void(0)"
+                                                                        class="a11y-font-resize a11y-font-resize__decrease"
+                                                                        title="تبديل حجم الخط">
+                                                                        <span>A-</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript: void(0)"
+                                                                        class="a11y-font-resize a11y-font-resize__increase"
+                                                                        title="تبديل حجم الخط">
+                                                                        <span>A+</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="hide">
+                                                                    <a href="javascript: void(0)"
+                                                                        class="a11y-font-resize" title="تبديل حجم الخط">
+                                                                        <img src="images/zoom-in.svg"
+                                                                            alt="تغيير حجم الخط" />
+                                                                        <img src="images/zoom-out.svg"
+                                                                            alt="تغيير حجم الخط"
+                                                                            style="display: none" />
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript: void(0)"
+                                                                        class="a11y-contrast-mode"
+                                                                        title="contrast mode toggle">
+                                                                        <img src="images/eye.svg" alt="الوضع المالي" />
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="footer-grid-item-2">
+                                                        <h3>عن منصة أبشر</h3>
+                                                        <ul class="list-unstyled footer-list-links">
+                                                            <li><a href="?uri=nm:oid:moi.absher.footer.about">عن
+                                                                    أبشر</a></li>
+                                                            <li><a href="?uri=nm:oid:moi.Privacy%2520Policy">سياسة
+                                                                    الخصوصية</a></li>
+                                                            <li><a href="?uri=nm:oid:moi.Terms%2520of%2520Use">شروط
+                                                                    الاستخدام</a></li>
+                                                            <li><a href="?uri=nm:oid:moi.absher.footer.news">الاخبار</a>
+                                                            </li>
+                                                            <li><a href="?uri=nm:oid:absher.footer.sla">اتفاقية مستوى
+                                                                    الخدمة</a></li>
+                                                            <li><a href="?uri=nm:oid:absher.footer.accessibility">أدوات
+                                                                    سهولة الوصول</a></li>
+                                                            <li><a href="?uri=nm:oid:absher.footer.sd">بيانات
+                                                                    إحصائية</a></li>
+                                                            <li><a href="?uri=nm:oid:absher.footer.iss">أمن
+                                                                    المعلومات</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="footer-grid-item-3">
+                                                        <h3>المساعدة والدعم</h3>
+                                                        <ul class="list-unstyled footer-list-links">
+                                                            <li><a href="?uri=nm:oid:moi.contact.content">اتصل بنا</a>
+                                                            </li>
+                                                            <li><a target="_blank">بلاغ عن فساد (نزاهة)</a></li>
+                                                            <li><a href="?uri=nm:oid:moi.footer.faqs">الأسئلة
+                                                                    الشائعة</a></li>
+                                                            <li><a href="?uri=nm:oid:absher.footer.sc">قنوات الخدمة</a>
+                                                            </li>
+                                                            <li><a href="?uri=nm:oid:absher.activation.offices">قنوات
+                                                                    تفعيل الهوية الوطنية الرقمية</a>
+                                                            </li>
+                                                            <li><a href="?uri=nm:oid:absher.userguide">دليل المستخدم</a>
+                                                            </li>
+                                                            <li><a href="?uri=nm:oid:absher.footer.subscribe">التسجيل
+                                                                    والاشتراك</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="footer-grid-item-4">
+                                                        <h3>روابط مهمة</h3>
+                                                        <ul class="list-unstyled footer-list-links">
+                                                            <li><a href="https://www.moi.gov.sa" target="_blank">بوابة
+                                                                    وزارة الداخلية</a></li>
+                                                            <li><a href="https://www.my.gov.sa" target="_blank">المنصة
+                                                                    الوطنية الموحدة</a></li>
+                                                            <li><a href="https://ai.sa/" target="_blank">الاستراتيجية
+                                                                    الوطنية للبيانات والذكاء
+                                                                    الاصطناعي</a></li>
+                                                            <li><a href="https://open.data.gov.sa" target="_blank">منصة
+                                                                    البيانات المفتوحة</a></li>
+                                                            <li><a href="https://eparticipation.my.gov.sa/en/"
+                                                                    target="_blank">بوابة المشاركة
+                                                                    الالكترونية </a></li>
+
+                                                            <li><a href="https://istitlaa.ncc.gov.sa/"
+                                                                    target="_blank">منصة الاستشارات القانونية
+                                                                    (استطلاع)</a></li>
+                                                            <li><a target="_blank">منصة الخدمات المالية (اعتماد)
+                                                                </a></li>
+                                                            <li><a target="_blank">تطبيقات الهاتف المحمول الحكومية </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="footer-grid-item-5">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-12 col-lg-12"
+                                                                style="padding: 0">
+                                                                <a href="javascript: void(0)" style="cursor: default;"
+                                                                    aria-label="رقم الاتصال بالدعم الفني لأبشر 920020405"
+                                                                    alt="رقم الاتصال بالدعم الفني لأبشر 920020405"
+                                                                    class="footer-brandlogo"></a>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-12 col-lg-12"
+                                                                style="padding: 0">
+                                                                <p class="foot-note nic-footer">
+                                                                    <a href="https://apps.apple.com/sa/app/absher-%D8%A3%D8%A8%D8%B4%D8%B1/id1004966456"
+                                                                        target="_blank" aria-label="متجر ابل"
+                                                                        alt="متجر ابل"><span class="sprites appicon-ios"
+                                                                            alt="متجر ابل"></span></a>
+                                                                    <a href="https://play.google.com/store/apps/details?id=sa.gov.moi"
+                                                                        target="_blank" aria-label="متجر جوجل"
+                                                                        alt="متجر جوجل"><span
+                                                                            class="sprites appicon-android"
+                                                                            alt="متجر جوجل"></span></a>
+                                                                    <a href="https://appgallery.huawei.com/#/app/C101687609"
+                                                                        target="_blank" aria-label="متجر هواوي"
+                                                                        alt="متجر هواوي"><span
+                                                                            class="sprites appicon-huawei"
+                                                                            alt="متجر هواوي"></span></a>
+                                                                </p>
+                                                                <!-- REGULAR -->
+                                                                <div class="re-edited-box-icon" data-theme="light">
+                                                                    <a href="https://raqmi.dga.gov.sa/platforms/platforms/00819c21-5208-4b4c-484d-08dd5ee141eb/platform-license"
+                                                                        target="_blank">
+                                                                        <img src="https://raqmi.dga.gov.sa/PlatformsApi/api/Attachments/27640802-9445-4107-b190-b29c00e936c2"
+                                                                            alt="raqmi"
+                                                                            onerror="this.onerror=null; this.src='images/raqmi-light.png';" />
+                                                                    </a>
+                                                                </div>
+                                                                <!-- DARKMODE -->
+                                                                <div class="re-edited-box-icon" data-theme="dark">
+                                                                    <a href="https://raqmi.dga.gov.sa/platforms/platforms/00819c21-5208-4b4c-484d-08dd5ee141eb/platform-license"
+                                                                        target="_blank">
+                                                                        <img src="https://raqmi.dga.gov.sa/PlatformsApi/api/Attachments/54cb1d38-a3d4-4546-b4dc-b29c00e936c5"
+                                                                            alt="raqmi"
+                                                                            onerror="this.onerror=null; this.src='images/raqmi-dark.png';" />
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer-notes">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <ul class="list-inline">
+                                                            <li><a href="?uri=nm:oid:moi.absher.footer.sitemap">خريطة
+                                                                    الموقع</a></li>
+                                                            <li><a
+                                                                    href="?uri=nm:oid:moi.absher.footer.calendar">التقويم</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <p class="text-center"><strong>تطوير و تشغيل مركز المعلومات
+                                                                الوطني </strong><img src="images/nic_footer_logo.png"
+                                                                alt="NIC"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </footer>
+</body>
+
+</html>

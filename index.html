@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>واجهة شبيهة بأبشر</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background-color: #f5f7f6;
+      color: #1b2b1f;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url(images/bg-Individuals2.svg) top left no-repeat,
+        url(images/bg-Individuals.svg) bottom right no-repeat;
+      background-size: cover;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* الشريط العلوي */
+
+    header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e5e4;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      font-size: 14px;
+    }
+
+    .header-right,
+    .header-center,
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right {
+      gap: 16px;
+    }
+
+    .header-logos {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-main {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid #d0d7d3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00703c;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .logo-vision {
+      width: 100px;
+      height: 32px;
+      border-radius: 4px;
+      border: 1px solid #e2e5e4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #4a5a4f;
+    }
+
+    .header-center {
+      flex: 1;
+      justify-content: center;
+      gap: 28px;
+      font-size: 15px;
+    }
+
+    .header-center a {
+      color: #1b2b1f;
+      font-weight: 500;
+    }
+
+    .header-center a.active {
+      color: #00703c;
+      border-bottom: 2px solid #00703c;
+      padding-bottom: 4px;
+    }
+
+    .header-left {
+      gap: 18px;
+      color: #4a5a4f;
+      font-size: 13px;
+    }
+
+    .search-area {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .search-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid #d0d7d3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .globe-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #d0d7d3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .absher-mark {
+      width: 40px;
+      height: 32px;
+      border-radius: 4px;
+      border: 1px solid #00703c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00703c;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    /* قسم الهيرو */
+
+    .hero {
+      background: url("images/conf_large_ar.png") no-repeat left center;
+      background-size: cover;
+      color: #ffffff;
+      padding: 60px 0 80px;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      width: 100%;
+      margin: 0;
+      padding-inline: 16px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    /* بطاقة تسجيل الدخول */
+
+    .login-card {
+      background-color: #ffffff;
+      color: #1b2b1f;
+      border-radius: 14px;
+      padding: 32px 32px 80px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      max-width: 100%;
+      margin-right: 0;
+      margin-left: 240px;
+    }
+
+    .login-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-align: right;
+      color: #222222;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #1b2b1f;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input {
+      width: 100%;
+      padding: 10px 38px 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #c6cec9;
+      font-size: 16px;
+      outline: none;
+      text-align: right;
+    }
+
+    .input::placeholder {
+      color: #a3aea8;
+      font-size: 15px;
+    }
+
+    .input:focus {
+      border-color: #00703c;
+      box-shadow: 0 0 0 2px rgba(0, 112, 60, 0.15);
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #7a8a80;
+      cursor: pointer;
+    }
+
+    /* أيقونة اسم المستخدم فقط تكون على يمين الحقل */
+    .ri-account-circle-line.input-icon {
+      right: 10px;
+      left: auto;
+      font-size: 19px;
+    }
+
+    /* أيقونة القفل في يمين حقل كلمة المرور */
+    .password-lock-icon {
+      right: 10px;
+      left: auto;
+      font-size: 19px;
+    }
+
+    /* أيقونة إظهار/إخفاء كلمة المرور */
+    .toggle-password-icon {
+      color: #00703c;
+      font-size: 20px;
+    }
+
+    .login-actions {
+      margin-top: 4px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .forgot-link {
+      color: #00703c;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .login-button {
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      background-color: #00703c;
+      color: #ffffff;
+      font-size: 15px;
+      padding: 10px 0;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-button:hover {
+      background-color: #005a30;
+    }
+
+    .new-user {
+      margin-top: 10px;
+      font-size: 13px;
+      text-align: center;
+      color: #00703c;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* جانب المؤتمر */
+
+    .hero-right {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: stretch;
+      gap: 24px;
+    }
+
+    .conference-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 12px;
+    }
+
+    .conference-badge {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .conference-title-ar {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .conference-title-en {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .conference-text {
+      font-size: 13px;
+      color: #e1ebe6;
+      line-height: 1.7;
+      max-width: 440px;
+    }
+
+    .conference-date {
+      margin-top: 20px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .conference-year {
+      font-size: 20px;
+      margin-top: 4px;
+    }
+
+    /* صورة الشخص */
+
+    .hero-photo-wrapper {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero-photo-card {
+      position: relative;
+      width: 240px;
+      height: 360px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(160deg, #d09f42, #8b6230);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero-photo {
+      width: 210px;
+      height: 340px;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .shape-circle {
+      position: absolute;
+      top: 14%;
+      right: -26px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #ffb341;
+    }
+
+    .shape-rect {
+      position: absolute;
+      top: 25%;
+      right: 44px;
+      width: 80px;
+      height: 140px;
+      border-radius: 12px;
+      background: #f3f4f1;
+    }
+
+    .hero-slider-arrows {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .arrow-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: transparent;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .arrow-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .arrow-btn.disabled {
+      opacity: 0.5;
+      cursor: default;
+      background: transparent;
+      transform: none;
+    }
+
+    /* قسم الخدمات السفلية */
+
+    .services {
+      background-color: #ffffff;
+      padding: 26px 16px 40px;
+    }
+
+    .services-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .services-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .services-subtitle {
+      font-size: 13px;
+      color: #5a6a60;
+    }
+
+    .services-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    .service-card {
+      border-radius: 10px;
+      padding: 18px 16px;
+      background: #f5f7f6;
+      border: 1px solid #e1ebe6;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .service-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: #00703c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 18px;
+    }
+
+    .service-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .service-text {
+      font-size: 12px;
+      color: #5a6a60;
+      line-height: 1.6;
+    }
+
+    /* شريط سفلي بسيط */
+
+    footer {
+      background-color: #0f2f22;
+      color: #e1ebe6;
+      font-size: 12px;
+      text-align: center;
+      padding: 12px;
+    }
+
+    /* استجابة */
+
+    @media (max-width: 992px) {
+      .hero {
+        padding: 40px 0 60px;
+        min-height: auto;
+        background-position: center;
+      }
+      .hero-inner {
+        padding-inline: 16px;
+        justify-content: center;
+      }
+      .login-card {
+        margin-left: 0;
+      }
+      .services-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .header-center {
+        order: 3;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        row-gap: 8px;
+        column-gap: 16px;
+        font-size: 13px;
+      }
+      .header-left {
+        margin-right: auto;
+        font-size: 12px;
+      }
+      .hero {
+        padding: 32px 0 40px;
+      }
+      .hero-inner {
+        padding-inline: 12px;
+      }
+      .services-cards {
+        grid-template-columns: 1fr;
+      }
+      .login-card {
+        order: -1;
+        width: 100%;
+        max-width: 360px;
+        padding: 40px 20px 36px;
+        margin: 0 auto;
+      }
+    }
+
+    #labibaWebBotDiv {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #signLanguageIcon {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- الشريط العلوي -->
+  <header>
+    <div class="header-inner">
+      <div class="header-right">
+        <div class="header-logos">
+          <div class="logo-main">شعار</div>
+          <div class="logo-vision">رؤية 2030</div>
+        </div>
+      </div>
+
+      <nav class="header-center" aria-label="التنقل الرئيسي">
+        <a href="#" class="active">الرئيسية</a>
+        <a href="#">عن أبشر</a>
+        <a href="#">المشاركة الإلكترونية</a>
+        <a href="#">دليل الخدمات</a>
+        <a href="#">خدمات أبشر</a>
+      </nav>
+
+      <div class="header-left">
+        <div class="absher-mark">|||</div>
+        <div class="lang-switch">
+          <span>English</span>
+          <div class="globe-icon">🌐</div>
+        </div>
+        <div class="search-area">
+          <div class="search-icon">🔍</div>
+          <span>ابحث</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- الهيرو -->
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- كرت تسجيل الدخول -->
+      <div class="login-card">
+        <div class="login-title">تسجيل الدخول</div>
+
+        <div class="field">
+          <label for="username" class="field-label">اسم المستخدم أو رقم الهوية</label>
+          <div class="input-wrapper">
+            <input id="username" class="input" type="text" placeholder="اسم المستخدم أو رقم الهوية" />
+            <i class="ri-account-circle-line input-icon"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">كلمة المرور</label>
+          <div class="input-wrapper">
+            <input id="password" class="input" type="password" placeholder="كلمة المرور" />
+            <i class="ri-lock-line input-icon password-lock-icon"></i>
+            <i id="togglePassword" class="ri-eye-off-line input-icon toggle-password-icon" title="إظهار/إخفاء"></i>
+          </div>
+        </div>
+
+        <div class="login-actions">
+          <span class="forgot-link">نسيت كلمة المرور؟</span>
+        </div>
+
+        <button id="loginButton" class="login-button">تسجيل الدخول</button>
+
+        <div class="new-user">
+          مستخدم جديد؟
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- الخدمات -->
+  <section class="services">
+    <div class="services-inner">
+      <div class="services-header">
+        <div>
+          <div class="services-title">خدمات فورية</div>
+          <div class="services-subtitle">
+            نماذج لخدمات إلكترونية يمكن المستخدم تنفيذها فوراً.
+          </div>
+        </div>
+      </div>
+
+      <div class="services-cards">
+        <div class="service-card">
+          <div class="service-icon">✓</div>
+          <div>
+            <div class="service-title">خدمة 1</div>
+            <div class="service-text">وصف مختصر عن الخدمة الأولى.</div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">✓</div>
+          <div>
+            <div class="service-title">خدمة 2</div>
+            <div class="service-text">وصف مختصر عن الخدمة الثانية.</div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">✓</div>
+          <div>
+            <div class="service-title">خدمة 3</div>
+            <div class="service-text">وصف مختصر عن الخدمة الثالثة.</div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">✓</div>
+          <div>
+            <div class="service-title">خدمة 4</div>
+            <div class="service-text">وصف مختصر عن الخدمة الرابعة.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    هذه صفحة تجريبية للتعلّم فقط، لا تمثل أي جهة رسمية.
+  </footer>
+
+  <img
+    id="signLanguageIcon"
+    src="images/signDeaf.png"
+    alt="sign language support"
+  />
+  <img
+    id="labibaWebBotDiv"
+    src="https://cdn.labiba.ai/UploadedFiles/WebIntegration/Images/Absher/user.png"
+    alt="user"
+  />
+
+  <script>
+    // إظهار/إخفاء كلمة المرور
+
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+    const loginButton = document.getElementById("loginButton");
+
+    togglePassword.addEventListener("click", () => {
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+    });
+
+    // توجيه بسيط إلى صفحة رمز التحقق بعد الضغط على تسجيل الدخول
+    if (loginButton) {
+      loginButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "verification.html";
+      });
+    }
+  </script>
+
+</body>
+</html>
