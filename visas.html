@@ -414,16 +414,11 @@
         </div>
     </div>
     
-    <!-- زر المساعد الصوتي -->
     <a href="javascript:void(0)" onclick="openMaeenModal()" class="voice-assistant-btn">
         <i class="fas fa-microphone"></i>
     </a>
     
-    <!-- أضف كود مودال معين الصوتي هنا -->
-    <!-- ... كود المودال ... -->
-    
     <script>
-        // جعل الدوال متاحة عالمياً
         window.openMaeenModal = function() {
             if (typeof openMaeenModal === 'function') {
                 openMaeenModal();
@@ -432,7 +427,6 @@
             }
         };
         
-        // وظيفة التحقق من حالة التأشيرة
         function checkVisaStatus() {
             const visaNumber = document.getElementById('visaNumber').value;
             const passportNumber = document.getElementById('passportNumber').value;
@@ -444,7 +438,6 @@
                 return;
             }
             
-            // محاكاة استجابة من الخادم
             const statuses = ['صادرة', 'قيد المراجعة', 'مرفوضة', 'منتهية الصلاحية'];
             const types = ['عمل', 'زيارة', 'عائلية', 'دراسة', 'علاج'];
             const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];

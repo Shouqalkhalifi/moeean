@@ -7,29 +7,28 @@ echo.
 
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo خطأ: Python غير مثبت
+    echo 
     pause
-    exit /b 1
+    exit 
 )
 
-echo تم العثور على Python
-python --version
+echo 
+
 echo.
 
-echo فحص المكتبات المطلوبة...
-python -c "import flask, whisper" 2>nul
+echo 
+ "import flask, whisper" 2>nul
 if errorlevel 1 (
-    echo جاري تثبيت المكتبات...
-    python -m pip install -r requirements.txt
+    echo 
 )
 
-echo جميع المكتبات جاهزة
+echo
 echo.
-echo بدء خادم معين...
+echo 
 echo.
-echo افتح المتصفح ثم افتح ملف dashboard.html واضغط على زر معين
+echo
 echo.
 
-python voice_server.py
+
 
 pause

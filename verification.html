@@ -140,7 +140,6 @@
       border-color: #00a86b;
     }
 
-    /* طبقة الانتظار */
     .loading-overlay {
       position: fixed;
       inset: 0;
@@ -276,7 +275,7 @@
   <script>
     const codeInputs = document.querySelectorAll(".code-box");
     const loadingOverlay = document.getElementById("loadingOverlay");
-    const redirectUrl = "dashboard.html"; // يمكنك تغييرها إلى صفحة لوحة التحكم الفعلية
+    const redirectUrl = "dashboard.html";
 
     function allInputsFilled() {
       return Array.from(codeInputs).every((inp) => inp.value && inp.value.trim() !== "");

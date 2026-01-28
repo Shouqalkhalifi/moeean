@@ -118,9 +118,6 @@ function displayElement(id) {
     }
   }
 
-  /*!
-  * hoverIntent r7 // 2013.03.11 // jQuery 1.9.1
-  */
   (function (e) { e.fn.hoverIntent = function (t, n, r) { var i = { interval: 100, sensitivity: 2, timeout: 0 }; if (typeof t === "object") { i = e.extend(i, t) } else if (e.isFunction(n)) { i = e.extend(i, { over: t, out: n, selector: r }) } else { i = e.extend(i, { over: t, out: t, selector: n }) } var s, o, u, a; var f = function (e) { s = e.pageX; o = e.pageY }; var l = function (t, n) { n.hoverIntent_t = clearTimeout(n.hoverIntent_t); if (Math.abs(u - s) + Math.abs(a - o) < i.sensitivity) { e(n).off("mousemove.hoverIntent", f); n.hoverIntent_s = 1; return i.over.apply(n, [t]) } else { u = s; a = o; n.hoverIntent_t = setTimeout(function () { l(t, n) }, i.interval) } }; var c = function (e, t) { t.hoverIntent_t = clearTimeout(t.hoverIntent_t); t.hoverIntent_s = 0; return i.out.apply(t, [e]) }; var h = function (t) { var n = jQuery.extend({}, t); var r = this; if (r.hoverIntent_t) { r.hoverIntent_t = clearTimeout(r.hoverIntent_t) } if (t.type == "mouseenter") { u = n.pageX; a = n.pageY; e(r).on("mousemove.hoverIntent", f); if (r.hoverIntent_s != 1) { r.hoverIntent_t = setTimeout(function () { l(n, r) }, i.interval) } } else { e(r).off("mousemove.hoverIntent", f); if (r.hoverIntent_s == 1) { r.hoverIntent_t = setTimeout(function () { c(n, r) }, i.timeout) } } }; return this.on({ "mouseenter.hoverIntent": h, "mouseleave.hoverIntent": h }, i.selector) } }(jq_bt));
   jq_bt(document).ready(function () {
     /* topnav show & hide */
@@ -138,43 +135,30 @@ function displayElement(id) {
         $currentnav.removeClass("active");
       }, 800);
     });
-    /* Tabs */
     jq_bt('ul.nav-tabs').each(function () {
-      // For each set of tabs, we want to keep track of
-      // which tab is active and it's associated content
       var $active, $content, $links = jq_bt(this).find('a');
-      // If the location.hash matches one of the links, use that as the active tab.
-      // If no match is found, use the first link as the initial active tab.
       $active = jq_bt($links.filter('[href="' + location.hash + '"]')[0] || $links[0]);
       $active.parent().addClass('active');
       $content = jq_bt($active.attr('href'));
       $content.addClass("active");
-      // Hide the remaining content
       $links.not($active).each(function () {
         jq_bt(jq_bt(this).attr('href')).hide().parent().removeClass('active');
       });
-      // Bind the click event handler
       jq_bt(this).on('click', 'a', function (e) {
-        // Make the old tab inactive.
         $active.parent().removeClass('active');
         $content.hide().removeClass('active');
-        // Update the variables with the new link and content
         $active = jq_bt(this);
         $content = jq_bt(jq_bt(this).attr('href'));
-        // Make the tab active.
         $active.parent().addClass('active');
         $content.show().addClass('active');
-        // Prevent the anchor's default click action
         e.preventDefault();
       });
     })
-    /* Toggling schedule */
     jq_bt(".week-day").on('click', 'li', function () {
       var $this = jq_bt(this), $em = $this.find('a > span > em'), $span = $this.find('a > span');
       $this.toggleClass("selected");
       if ($em.length > 0) { $em.remove() } else { $span.append("<em>selected</em>"); }
     });
-    /* Branchlist hover */
     $branchsummary = jq_bt(".branch-address");
     $branchsummary.eq(0).show();
     jq_bt(".branch-list").on('mouseenter', 'li', function () {
@@ -190,7 +174,6 @@ function displayElement(id) {
       $branchsummary.hide();
       $branchsummary.eq($selbranch).show();
     });
-    /* Select Branch on click */
     jq_bt(".branch-list").on('click', 'input[name=service_branch]', function () {
       var $this = jq_bt(this), $branchlist = jq_bt(".branch-list ul li");
       $branchlist.removeClass("selected");
@@ -211,27 +194,6 @@ function displayElement(id) {
     }).mouseout(function () {
       jq_bt(this).removeClass('over');
     });
-    /* home tab slider */
-    //$("div#mySliderTabs").sliderTabs({});
-
-    /*
-    jq_bt(".nav-holder > ul > li").hoverIntent({
-    sensitivity: 7, // number = sensitivity threshold (must be 1 or higher)
-    interval: 50,   // number = milliseconds of polling interval
-    over: function () {
-    jq_bt('.megamenu', this).slideDown(220);
-    jq_bt(this).addClass("hovered");
-    },  // function = onMouseOver callback (required)
-    timeout: 50,   // number = milliseconds delay before onMouseOut function call
-    out: function () {
-    jq_bt('.megamenu', this).hide();
-    jq_bt(this).removeClass("hovered");
-    }    // function = onMouseOut callback (required)
-    });
-    */
-
-
-    /* home service toggle */
     jq_bt(".service-toogle").on('click', function (e) {
       e.stopImmediatePropagation();
       var $this = jq_bt(this), $container = jq_bt(".service-container");
@@ -266,10 +228,6 @@ function displayElement(id) {
     jq_bt("input[type='password']").onpaste = function (e) {
       e.preventDefault();
     }
-    /*jq_bt('input:[type="password"]').bind("drag drop cut copy paste",function(e) {    
-        e.preventDefault();
-    });*/
-
     jq_bt(".dropdown  dt  a").click(function () {
       var $this = jq_bt(this);
       $this.parent().parent().parent().find("ul").not($this.parent().parent().find("ul")).hide();
@@ -289,7 +247,6 @@ function displayElement(id) {
       if (!$clicked.parents().hasClass("dropdown"))
         jq_bt(".dropdown dd ul").hide();
     });
-    /* Add and remove class */
     jq_bt('.steps li a').hover(function () {
       jq_bt(this).parent().toggleClass('hover');
     });
@@ -317,21 +274,14 @@ function displayElement(id) {
           jq_bt(this).val('').removeClass('placeholder');
         }
       }
-
-      // Create a dummy element for feature detection
       if (!('placeholder' in jq_bt('<input>')[0])) {
-
-        // Select the elements that have a placeholder attribute
         jq_bt('input[placeholder], textarea[placeholder]').blur(add).focus(remove).each(add);
-
-        // Remove the placeholder text before the form is submitted
         jq_bt('form').submit(function () {
           jq_bt(this).find('input[placeholder], textarea[placeholder]').each(remove);
         });
       }
     });
-  });//]]> 
-
+  });
 
   jq_bt(window).load(function () {
     function findImageNames(data, str) {
@@ -361,12 +311,6 @@ function displayElement(id) {
   });
   function callLogout() { Object.keys(localStorage).forEach(function (key) { if (/^DataTables_Absher_*/.test(key)) { localStorage.removeItem(key); } }); document.getElementById('logoutFormId').submit(); }
 
-
-
-  /* --------------------------------------
-   HyperPay - Widget Global Options START
-  ----------------------------------------*/
-  //hyper pay custom labels
   var hyperpayLabels = {
     en: {
       supportedCards: "Supported Cards",
@@ -378,7 +322,6 @@ function displayElement(id) {
     },
   };
 
-  //get the current locale
   var local = document.getElementsByTagName("html")[0].getAttribute("lang");
 
   var wpwlOptionsGlobal = {
@@ -387,41 +330,23 @@ function displayElement(id) {
     showCVVHint: true,
     brandDetection: true,
     onReady: function () {
-      //change the label
       $(".wpwl-label-brand").html(hyperpayLabels[local].supportedCards);
       $(".wpwl-label-cardHolder").html(hyperpayLabels[local].cardHolder);
-
-      //change input field order
       $(".wpwl-group-submit").before($(".wpwl-group-cardHolder"));
-
-      //update placeholder
       $(".wpwl-control-cardNumber").attr("placeholder", "1234 1234 1234 1234");
       $(".wpwl-control-cvv").attr("placeholder", "123");
-
-      //get brand options
       const brands = $(".wpwl-control-brand").find("option").map((index, item) => item.value);
-
-      //create custom brand toolbar
       var brandItem = $(".wpwl-brand:first").clone().removeAttr("class").attr("class", "wpwl-brand-card wpwl-brand-custom");
-
       brands.map((item) => {
         var brandClass = "wpwl-brand-" + brands[item];
         var brand = $(brandItem).clone().removeClass("wpwl-brand-VISA").addClass(brandClass);
         $(".wpwl-brand:first").after($(brand)).after($(brandItem));
       });
-
-      //remove the duplication of brands
       $(".wpwl-brand-card:first").remove();
       $(".wpwl-brand-custom:first").remove();
-
-      //append brands wrapper
       $(".wpwl-wrapper-brand").after('<div class="wpwl-wrapper-brand-custom"></div>');
-
-      //add the updated brands icons in payment UI
       $(".wpwl-wrapper-brand-custom").append($(".wpwl-brand-card"));
-
       var imageUrl = "https://eu-test.oppwa.com/v1/static/" + wpwl.cacheVersion + "/img/brand.png";
-
       $(".wpwl-brand-custom").css("background-image", "url(" + imageUrl + ")");
     },
     onChangeBrand: function (e) {
@@ -430,9 +355,5 @@ function displayElement(id) {
     },
     iframeStyles: {},
   };
-
-  /* --------------------------------------
-   HyperPay - Widget Global Options END
-  ----------------------------------------*/
 
 })(jq_bt);

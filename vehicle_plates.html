@@ -346,16 +346,11 @@
         </div>
     </div>
     
-    <!-- زر المساعد الصوتي -->
     <a href="javascript:void(0)" onclick="openMaeenModal()" class="voice-assistant-btn">
         <i class="fas fa-microphone"></i>
     </a>
-    
-    <!-- أضف كود مودال معين الصوتي هنا -->
-    <!-- ... كود المودال ... -->
-    
+
     <script>
-        // جعل الدوال متاحة عالمياً
         window.openMaeenModal = function() {
             if (typeof openMaeenModal === 'function') {
                 openMaeenModal();
@@ -364,7 +359,6 @@
             }
         };
         
-        // إضافة تفاعل لزر الطلب
         document.querySelectorAll('.btn').forEach(button => {
             button.addEventListener('click', function() {
                 const plateType = this.closest('.plate-card').querySelector('h3').textContent;

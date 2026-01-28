@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>واجهة شبيهة بأبشر</title>
+  <title>واجهة أبشر</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
     rel="stylesheet"
@@ -39,9 +39,6 @@
       text-decoration: none;
       color: inherit;
     }
-
-    /* الشريط العلوي */
-
     header {
       background-color: #ffffff;
       border-bottom: 1px solid #e2e5e4;
@@ -173,7 +170,6 @@
       font-size: 18px;
     }
 
-    /* قسم الهيرو */
 
     .hero {
       background: url("images/conf_large_ar.png") no-repeat left center;
@@ -194,7 +190,6 @@
       align-items: center;
     }
 
-    /* بطاقة تسجيل الدخول */
 
     .login-card {
       background-color: #ffffff;
@@ -263,21 +258,17 @@
       cursor: pointer;
     }
 
-    /* أيقونة اسم المستخدم فقط تكون على يمين الحقل */
     .ri-account-circle-line.input-icon {
       right: 10px;
       left: auto;
       font-size: 19px;
     }
 
-    /* أيقونة القفل في يمين حقل كلمة المرور */
     .password-lock-icon {
       right: 10px;
       left: auto;
       font-size: 19px;
     }
-
-    /* أيقونة إظهار/إخفاء كلمة المرور */
     .toggle-password-icon {
       color: #00703c;
       font-size: 20px;
@@ -323,7 +314,6 @@
       cursor: pointer;
     }
 
-    /* جانب المؤتمر */
 
     .hero-right {
       display: grid;
@@ -375,7 +365,6 @@
       margin-top: 4px;
     }
 
-    /* صورة الشخص */
 
     .hero-photo-wrapper {
       position: relative;
@@ -467,7 +456,6 @@
       transform: none;
     }
 
-    /* قسم الخدمات السفلية */
 
     .services {
       background-color: #ffffff;
@@ -543,7 +531,6 @@
       line-height: 1.6;
     }
 
-    /* شريط سفلي بسيط */
 
     footer {
       background-color: #0f2f22;
@@ -553,7 +540,6 @@
       padding: 12px;
     }
 
-    /* استجابة */
 
     @media (max-width: 992px) {
       .hero {
@@ -634,7 +620,6 @@
   </style>
 </head>
 <body>
-  <!-- الشريط العلوي -->
   <header>
     <div class="header-inner">
       <div class="header-right">
@@ -666,10 +651,8 @@
     </div>
   </header>
 
-  <!-- الهيرو -->
   <section class="hero">
     <div class="hero-inner">
-      <!-- كرت تسجيل الدخول -->
       <div class="login-card">
         <div class="login-title">تسجيل الدخول</div>
 
@@ -703,7 +686,6 @@
     </div>
   </section>
 
-  <!-- الخدمات -->
   <section class="services">
     <div class="services-inner">
       <div class="services-header">
@@ -767,7 +749,6 @@
   />
 
   <script>
-    // إظهار/إخفاء كلمة المرور
 
     const passwordInput = document.getElementById("password");
     const togglePassword = document.getElementById("togglePassword");
@@ -778,7 +759,6 @@
       passwordInput.type = isPassword ? "text" : "password";
     });
 
-    // توجيه بسيط إلى صفحة رمز التحقق بعد الضغط على تسجيل الدخول
     if (loginButton) {
       loginButton.addEventListener("click", (event) => {
         event.preventDefault();

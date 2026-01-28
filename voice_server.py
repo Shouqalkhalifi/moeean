@@ -10,10 +10,9 @@ import subprocess
 import atexit
 import shutil
 
-# البحث عن FFmpeg في المواقع الشائعة
 possible_paths = [
     r"C:\Users\shouq\Downloads\ffmpeg-2025-12-10-git-4f947880bd-essentials_build\ffmpeg-2025-12-10-git-4f947880bd-essentials_build\bin\ffmpeg.exe",  # المسار الجديد
-    "ffmpeg",  # تجربة مسار النظام
+    "ffmpeg",  
     r"C:\ffmpeg\bin\ffmpeg.exe",
     r"C:\Program Files\ffmpeg\bin\ffmpeg.exe",
     r"C:\Program Files (x86)\ffmpeg\bin\ffmpeg.exe",
@@ -24,9 +23,7 @@ possible_paths = [
 FFMPEG_PATH = None
 for path in possible_paths:
     try:
-        # تنسيق المسار مع اسم المستخدم إذا لزم الأمر
         path = path.format(os.getenv('USERNAME')) if '{' in path else path
-        # اختبار ما إذا كان FFmpeg يعمل في هذا المسار
         subprocess.run([path, "-version"], check=True, capture_output=True, text=True)
         FFMPEG_PATH = path
         print(f"✅ تم العثور على FFmpeg في: {FFMPEG_PATH}")
@@ -37,7 +34,7 @@ for path in possible_paths:
 if not FFMPEG_PATH:
     print("⚠️ تحذير: لم يتم العثور على FFmpeg في المواقع الشائعة")
     print("سيتم محاولة استخدام 'ffmpeg' من متغيرات النظام...")
-    FFMPEG_PATH = "ffmpeg"  # الرجوع إلى مسار النظام
+    FFMPEG_PATH = "ffmpeg" 
     try:
         subprocess.run([FFMPEG_PATH, "-version"], check=True, capture_output=True, text=True)
         print("✅ تم العثور على FFmpeg في متغيرات النظام")
@@ -45,10 +42,8 @@ if not FFMPEG_PATH:
         print("❌ خطأ: لم يتم العثور على FFmpeg في النظام")
         print("الرجاء تثبيت FFmpeg وإضافته إلى متغيرات النظام")
         print("يمكنك تحميله من: https://ffmpeg.org/download.html")
-        # متابعة التنفيذ ولكن قد لا تعمل ميزات الصوت
         FFMPEG_PATH = "ffmpeg"
 
-# إضافة مجلد FFmpeg إلى متغيرات النظام
 ffmpeg_dir = os.path.dirname(FFMPEG_PATH) if os.path.isabs(FFMPEG_PATH) else ""
 if ffmpeg_dir and ffmpeg_dir not in os.environ['PATH']:
     os.environ['PATH'] = ffmpeg_dir + os.pathsep + os.environ.get('PATH', '')
@@ -56,16 +51,13 @@ if ffmpeg_dir and ffmpeg_dir not in os.environ['PATH']:
 app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app)
 
-# إنشاء مجلد مؤقت مخصص للتطالب
 TEMP_DIR = Path(tempfile.gettempdir()) / "mueayann_temp"
 
-# تنظيف المجلد المؤقت عند بدء التطبيق
 if TEMP_DIR.exists():
     shutil.rmtree(TEMP_DIR, ignore_errors=True)
 os.makedirs(TEMP_DIR, exist_ok=True)
 print(f"📁 المجلد المؤقت: {TEMP_DIR}")
 
-# تنظيف الملفات المؤقتة عند إغلاق التطبيق
 def cleanup_temp_files():
     if TEMP_DIR.exists():
         shutil.rmtree(TEMP_DIR, ignore_errors=True)
@@ -73,7 +65,6 @@ def cleanup_temp_files():
 
 atexit.register(cleanup_temp_files)
 
-# تحميل نموذج Whisper مع معالجة الأخطاء
 try:
     print("⏳ جاري تحميل نموذج Whisper...")
     model = whisper.load_model("base")
@@ -81,9 +72,8 @@ try:
 except Exception as e:
     print(f"❌ فشل في تحميل نموذج Whisper: {str(e)}")
     print("⚠️ تأكد من تثبيت جميع المتطلبات المطلوبة")
-    model = None  # سنقوم بالتحقق من وجود النموذج قبل استخدامه
+    model = None 
 
-# تعريف مسارات الصفحات
 PAGE_ROUTES = {
     "الخدمات": "services.html",
     "إستعلامات": "inquiries.html",
@@ -117,7 +107,6 @@ def index():
 @app.route('/<path:path>')
 def serve_file(path):
     if path in PAGE_ROUTES.values():
-        # إنشاء صفحة بسيطة تعرض اسم الصفحة
         return f"""
         <!DOCTYPE html>
         <html dir="rtl">
@@ -181,31 +170,24 @@ def transcribe_audio():
         audio_file = request.files['audio']
         
         try:
-            # إنشاء مجلد TEMP_DIR إذا لم يكن موجودًا
             os.makedirs(TEMP_DIR, exist_ok=True)
             print(f"📂 المجلد المؤقت: {TEMP_DIR}")
             
-            # إنشاء ملف مؤقت في المجلد المخصص
             temp_path = TEMP_DIR / f"recording_{datetime.now().strftime('%Y%m%d_%H%M%S')}.wav"
             print(f"📝 حفظ الملف الصوتي في: {temp_path}")
             
-            # حفظ الملف الصوتي
             audio_file.save(str(temp_path))
             
-            # التحقق من وجود الملف
             if not os.path.exists(temp_path):
                 raise FileNotFoundError(f"فشل في حفظ الملف في: {temp_path}")
             
             print(f"🔍 حجم الملف: {os.path.getsize(temp_path)} بايت")
             print(f"⏳ جاري تحليل الصوت...")
             
-            # استخدام FFmpeg لتحويل الملف إذا لزم الأمر
             if not os.path.exists(FFMPEG_PATH):
                 raise FileNotFoundError(f"لم يتم العثور على FFmpeg في المسار: {FFMPEG_PATH}")
 
-            # استخدام subprocess للتحقق من أن FFmpeg يعمل
             try:
-                # تحويل الملف إلى تنسيق متوافق مع Whisper
                 converted_path = str(temp_path) + ".converted.wav"
                 cmd = [
                     FFMPEG_PATH,
@@ -213,21 +195,20 @@ def transcribe_audio():
                     '-ar', '16000',
                     '-ac', '1',
                     '-c:a', 'pcm_s16le',
-                    '-y',  # تجاوز الملف إذا كان موجودًا
+                    '-y',  
                     converted_path
                 ]
                 
                 print(f"🔄 جاري تحويل الملف الصوتي...")
                 subprocess.run(cmd, check=True, capture_output=True, text=True)
                 
-                # استخدام الملف المحول للتحويل إلى نص
                 print(f"🔊 جاري تحويل الصوت إلى نص...")
                 try:
                     result = model.transcribe(
                         converted_path,
                         language="ar",
-                        fp16=False,  # تعطيل FP16 لأنه غير مدعوم على CPU
-                        verbose=True  # إظهار معلومات إضافية
+                        fp16=False, 
+                        verbose=True 
                     )
                 except Exception as e:
                     print(f"❌ خطأ في تحويل الصوت إلى نص: {str(e)}")
@@ -237,7 +218,6 @@ def transcribe_audio():
                         'details': str(e)
                     })
                 
-                # حذف الملف المحول بعد الانتهاء
                 try:
                     os.remove(converted_path)
                 except Exception as e:
@@ -250,7 +230,6 @@ def transcribe_audio():
             transcription = result["text"].strip()
             print(f"✅ النص المحول: {transcription}")
             
-            # البحث عن أي صفحة مطابقة في النص
             for keyword, route in PAGE_ROUTES.items():
                 if keyword in transcription:
                     print(f"🔍 تم العثور على أمر: {keyword} - إعادة توجيه إلى: {route}")
@@ -260,7 +239,6 @@ def transcribe_audio():
                         'redirect_to': f"/{route}"
                     })
             
-            # إذا لم يتم العثور على صفحة مطابقة، إرجاع النص فقط
             print("⚠️ لم يتم العثور على صفحة مطابقة")
             return jsonify({
                 'success': True,
@@ -274,7 +252,6 @@ def transcribe_audio():
             print(f"❌ خطأ في معالجة الصوت: {str(e)}")
             print(f"🔧 تفاصيل الخطأ: {error_details}")
             
-            # رسالة خطأ أكثر وضوحًا
             error_message = str(e)
             if "No such file or directory" in error_message or "The system cannot find the file specified" in error_message:
                 error_message = "خطأ: لم يتم العثور على ملف FFmpeg. يرجى تثبيت FFmpeg وإضافته إلى متغيرات النظام."
@@ -295,7 +272,6 @@ def transcribe_audio():
             'details': str(e)
         })
     finally:
-        # تنظيف الملفات المؤقتة
         try:
             if temp_path and os.path.exists(temp_path):
                 os.remove(temp_path)
@@ -310,5 +286,4 @@ if __name__ == '__main__':
     print("📍 افتح المتصفح على: http://localhost:5000")
     print("="*50 + "\n")
     
-    # تشغيل الخادم على المنفذ 5000
     app.run(host='0.0.0.0', port=5000, debug=True)
